@@ -70,6 +70,7 @@ int main (int argc, char **argv)
 //	t_list *b;
 
 //	split[0][0] = 0;
+	a = ft_lstnew(0);
 	split = ft_parse(argc, argv);
 	lstcreate(&a, split);
 
