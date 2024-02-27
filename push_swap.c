@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stddef.h>
-#include<stdio.h>
+
 void	lstcreate(t_list **a, int *split)
 {
 	int i;
@@ -32,7 +31,7 @@ void	lstcreate(t_list **a, int *split)
 	
 		}
 	}
-	return ;
+	return (free(split));
 }
 
 int	*ft_parse(int argc, char **argv)
@@ -48,23 +47,25 @@ int	*ft_parse(int argc, char **argv)
 	{
 		str = ft_strjoin(str, argv[i], i);
 		if (!str)
-			return (NULL);
+			exit (1);
 		i++;
 	}
 	split = ft_split(str, ' ');
+	if (!split)
+		return (free(str), NULL);
 	i = 0;
 	while (split[i])
 		i++;
 	num = malloc((i + 1) * sizeof(int));
 	if (!num)
-		return (0);
+		return (ft_free(split, str, ' '), free(str), NULL);
 	num[0] = i;
 	while (i > 0)
 	{
 		num[i] = ft_atoi(split[i - 1]);
 		i--;
 	}
-	return (ft_free(split, str, ' '), num);
+	return (ft_free(split, str, ' '), free(str), num);
 }
 
 int main (int argc, char **argv)
@@ -74,6 +75,9 @@ int main (int argc, char **argv)
 //	t_list *b;
 
 //	split[0][0] = 0;
+	if (argc <= 1)
+		exit (1);
+	ft_error(argv);
 	a = ft_lstnew(1);
 	split = ft_parse(argc, argv);
 	lstcreate(&a, split);
@@ -83,5 +87,6 @@ int main (int argc, char **argv)
 		a = a->next;
 	}
 	printf("%d\n", a->content);
+	ft_lstfree(&a);
 	return (0);
 }

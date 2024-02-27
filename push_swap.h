@@ -15,12 +15,18 @@
 
  #  include<stddef.h>
  #  include<stdlib.h>
+ #	include<stdio.h>
+ #	include<unistd.h>
 
 typedef struct s_list
 {
 	int				content;
 	struct s_list	*next;
 }					t_list;
+
+/********			ft_error				******/
+
+void	ft_error(char **str);
 
 /********			moves					******/
 
@@ -54,6 +60,7 @@ size_t	ft_strlen(const char *c);
 int		ft_count_word(char const *s, char c);
 char	*ft_cpy_str(char *str, char const *s, size_t *i, char c);
 void	ft_free(char **str, char const *s, char c);
+void	ft_lstfree(t_list **a);
 
 /********			push_swap				******/
 

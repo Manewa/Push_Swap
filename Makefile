@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 SRCS		= moves.c ft_lib.c ft_lib_utils.c ft_lst.c moves_reverse.c \
-			push_swap.c 
+			push_swap.c ft_error.c 
 
 HEADER		= push_swap.h
 

@@ -69,3 +69,18 @@ void	ft_free(char **str, char const *s, char c)
 	}
 	return ;
 }
+
+void	ft_lstfree(t_list **a)
+{
+	t_list	*tmp;
+
+	if (!a)
+		return ;
+	while (*a)
+	{
+		tmp = (*a)->next;
+		free(*a);
+		*a = tmp;
+	}
+	return ;
+}
