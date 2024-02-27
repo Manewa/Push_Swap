@@ -37,30 +37,25 @@ int	ft_atoi(const char *str)
 	return (num * sign);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2, size_t entry)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	char	*str;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	if (!s2)
 		return (NULL);
 	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 2) * sizeof(char));
 	if (!str)
 		return (NULL);
-	while (s1[i])
-	{
+	while (s1[++i])
 		str[i] = s1[i];
-		i++;
-	}
+	if (entry > 1)
+		free (s1);
 	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
+		str[i++] = s2[j++];
 	str[i++] = ' ';
 	str[i] = '\0';
 	return (str);
@@ -85,7 +80,7 @@ char	**ft_split(char const *s, char c)
 			i++;
 		str[j] = ft_cpy_str(str[j], s, &i, c);
 		if (!str[j])
-			return (ft_free(str, s, c));
+			return (ft_free(str, s, c), NULL);
 		while (s[i] == c)
 			i++;
 		j++;

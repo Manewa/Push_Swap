@@ -44,16 +44,16 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 
 /********			ft_lib					******/
 
-int ft_atoi(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_atoi(const char *str);
+char	*ft_strjoin(char *s1, char const *s2, size_t entry);
 char	**ft_split(char const *s, char c);
 
 /********			ft_lib_utils			******/
 
 size_t	ft_strlen(const char *c);
-int	ft_count_word(char const *s, char c);
+int		ft_count_word(char const *s, char c);
 char	*ft_cpy_str(char *str, char const *s, size_t *i, char c);
-void	*ft_free(char **str, char const *s, char c);
+void	ft_free(char **str, char const *s, char c);
 
 /********			push_swap				******/
 

@@ -12,17 +12,17 @@
 
 #include "push_swap.h"
 #include <stddef.h>
-
+#include<stdio.h>
 void	lstcreate(t_list **a, int *split)
 {
-	size_t i;
+	int i;
 
-	i = 0;
-	while (split[i])
+	i = 1;
+	while (split[0] >= i)
 	{
-		if (i == 0)
+		if (i == 1)
 		{
-			(*a)->content = split[i];
+			(*a)->content = split[1];
 			i++;
 		}
 		else
@@ -37,31 +37,35 @@ void	lstcreate(t_list **a, int *split)
 
 int	*ft_parse(int argc, char **argv)
 {
-	int i;
+	size_t i;
 	char *str;
 	int *num;
 	char **split;
 
 	i = 1;
 	str = "\0";
-	while (i < argc)
+	while (i < (size_t)argc)
 	{
-		str = ft_strjoin(str, argv[i]);
+		str = ft_strjoin(str, argv[i], i);
+		if (!str)
+			return (NULL);
 		i++;
 	}
 	split = ft_split(str, ' ');
 	i = 0;
 	while (split[i])
 		i++;
-	num = malloc(i * sizeof(int));
+	num = malloc((i + 1) * sizeof(int));
 	if (!num)
 		return (0);
-	while (--i >= 0)
-		num[i] = ft_atoi(split[i]);
-	return (num);
+	num[0] = i;
+	while (i > 0)
+	{
+		num[i] = ft_atoi(split[i - 1]);
+		i--;
+	}
+	return (ft_free(split, str, ' '), num);
 }
-
-#include<stdio.h>
 
 int main (int argc, char **argv)
 {
@@ -70,10 +74,9 @@ int main (int argc, char **argv)
 //	t_list *b;
 
 //	split[0][0] = 0;
-	a = ft_lstnew(0);
+	a = ft_lstnew(1);
 	split = ft_parse(argc, argv);
 	lstcreate(&a, split);
-
 	while (a->next)
 	{
 		printf("%d\n", a->content);

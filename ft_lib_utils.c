@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include "push_swap.h"
-
+#include<stdio.h>
 size_t	ft_strlen(const char *c)
 {
 	size_t	i;
@@ -55,7 +55,7 @@ char	*ft_cpy_str(char *str, char const *s, size_t *i, char c)
 	return (str);
 }
 
-void	*ft_free(char **str, char const *s, char c)
+void	ft_free(char **str, char const *s, char c)
 {
 	int	i;
 	int	count;
@@ -67,5 +67,5 @@ void	*ft_free(char **str, char const *s, char c)
 		free(str[i]);
 		i++;
 	}
-	return (NULL);
+	return ;
 }
