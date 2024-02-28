@@ -85,8 +85,11 @@ int main (int argc, char **argv)
 
 	ft_check_errors(argv);
 	split = ft_parse(argc, argv);
-	if (ft_check_double(split) == 1)
+	if (ft_check_double(split) == 1)\
+	{
+		free(split);
 		ft_exit();
+	}
 	a = ft_lstnew(1);
 	lstcreate(&a, split);
 	while (a->next)

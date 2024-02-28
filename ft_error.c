@@ -27,6 +27,8 @@ void	ft_num(char **str)
 	while (str[i])
 	{
 		j = 0;
+		if (str[i][j] == 0)
+			ft_exit();
 		while (str[i][j])
 		{
 			if ((str[i][j] <= '9' && str[i][j] >= '0') || str[i][j] == 32 ||
