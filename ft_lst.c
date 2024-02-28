@@ -44,3 +44,17 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	return ;
 }
 
+void	ft_lstfree(t_list **a)
+{
+	t_list	*tmp;
+
+	if (!a)
+		return ;
+	while (*a)
+	{
+		tmp = (*a)->next;
+		free(*a);
+		*a = tmp;
+	}
+	return ;
+}

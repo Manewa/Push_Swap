@@ -26,7 +26,11 @@ typedef struct s_list
 
 /********			ft_error				******/
 
-void	ft_error(char **str);
+void	ft_exit();
+void	ft_num(char **str);
+void	ft_sign(char **str);
+int		ft_check_double(int *num);
+void	ft_check_errors(char **str);
 
 /********			moves					******/
 
@@ -47,6 +51,7 @@ t_list	*ft_lstnew(int content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstfree(t_list **a);
 
 /********			ft_lib					******/
 
@@ -60,7 +65,7 @@ size_t	ft_strlen(const char *c);
 int		ft_count_word(char const *s, char c);
 char	*ft_cpy_str(char *str, char const *s, size_t *i, char c);
 void	ft_free(char **str, char const *s, char c);
-void	ft_lstfree(t_list **a);
+
 
 /********			push_swap				******/
 
