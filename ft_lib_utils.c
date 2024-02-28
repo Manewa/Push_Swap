@@ -63,7 +63,7 @@ void	ft_free(char **str, char const *s, char c)
 
 	i = 0;
 	count = ft_count_word(s, c);
-	while (i <= count)
+	while (i < count)
 	{
 		free(str[i]);
 		i++;

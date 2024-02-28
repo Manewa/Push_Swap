@@ -91,6 +91,8 @@ int main (int argc, char **argv)
 		ft_exit();
 	}
 	a = ft_lstnew(1);
+	if (!a)
+		return (free(split), 0);
 	lstcreate(&a, split);
 	while (a->next)
 	{
