@@ -78,7 +78,7 @@ int	ft_check_double(int *num)
 		j = i + 1;
 		while (num[0] >= j && num[i] != num[j])
 			j++;
-		if (num[0] > j && num[i] == num[j])
+		if (num[0] >= j && num[i] == num[j])
 			return (1);
 		i++;
 	}

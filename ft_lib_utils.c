@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "push_swap.h"
 #include<stdio.h>
+
 size_t	ft_strlen(const char *c)
 {
 	size_t	i;
@@ -69,3 +70,16 @@ void	ft_free(char **str, char const *s, char c)
 	}
 	return ;
 }
+
+/*void	ft_freeint(int *num)
+{
+	int	i;
+
+	i = num[0];
+	while (i >= 0)
+	{
+		free (num[i]);
+		i--;
+	}
+	return ;
+}*/
