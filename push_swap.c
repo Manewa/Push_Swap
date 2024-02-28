@@ -82,7 +82,6 @@ int main (int argc, char **argv)
 //	split[0][0] = 0;
 	if (argc <= 1)
 		exit (1);
-
 	ft_check_errors(argv);
 	split = ft_parse(argc, argv);
 	if (ft_check_double(split) == 1)\
