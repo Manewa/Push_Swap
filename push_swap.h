@@ -79,4 +79,13 @@ void		lstcreate(t_list **a, long int *split);
 long int	*ft_parse(int argc, char **argv);
 int			main(int argc, char **argv);
 
+/********			algo					******/
+
+t_list	**main_algo(t_list **a);
+void	fill_b(t_list **a, t_list **b);
+
+/********************TESTS A SUPPRIMER************/
+
+void	ft_testlst(t_list **a, t_list **b);
+
 #endif

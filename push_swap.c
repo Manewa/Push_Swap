@@ -75,11 +75,35 @@ long int	*ft_parse(int argc, char **argv)
 	return (ft_free(split, str, ' '), free(str), num);
 }
 
+void	ft_testlst(t_list **a, t_list **b)
+{
+	t_list	*tmpa;
+	t_list	*tmpb;
+
+	tmpa = *a;
+	tmpb = *b;
+	while ((*a)->next || (*b)->next)
+	{
+		printf("%d		|		%d\n", (*a)->content, (*b)->content);
+		if ((*a)->next)
+			*a = (*a)->next;
+		else
+			(*a)->content = -1;
+		if ((*b)->next)
+			*b = (*b)->next;
+	}
+	printf("%d		|		%d\n", (*a)->content, (*b)->content);
+	printf("A		|		B\n");
+	*a = tmpa;
+	*b = tmpb;
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
 	long int	*split;
 	t_list		*a;
-	t_list		*tmp;
+//	t_list		*tmp;
 
 	if (argc <= 1)
 		exit (1);
@@ -96,14 +120,7 @@ int	main(int argc, char **argv)
 	if (!a)
 		return (free(split), 0);
 	lstcreate(&a, split);
-	tmp = a;
-	while (a->next)
-	{
-		printf("%d\n", a->content);
-		a = a->next;
-	}
-	printf("%d\n", a->content);
-	a = tmp;
+	main_algo(&a);
 	ft_lstfree(&a);
 	return (0);
 }

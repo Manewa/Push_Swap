@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 SRCS		= Moves/moves1.c lib/ft_lib.c lib/ft_lib_utils.c lib/ft_lst.c \
-			Moves/moves2.c Moves/moves3.c push_swap.c ft_error.c 
+			Moves/moves2.c Moves/moves3.c push_swap.c ft_error.c Algo/algo.c 
 
 HEADER		= push_swap.h
 
