@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= moves.c ft_lib.c ft_lib_utils.c ft_lst.c moves_reverse.c \
-			push_swap.c ft_error.c 
+SRCS		= Moves/moves1.c lib/ft_lib.c lib/ft_lib_utils.c lib/ft_lst.c \
+			Moves/moves2.c Moves/moves3.c push_swap.c ft_error.c 
 
 HEADER		= push_swap.h
 

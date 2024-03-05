@@ -6,17 +6,18 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:09:19 by namalier          #+#    #+#             */
-/*   Updated: 2024/02/21 11:09:20 by namalier         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:55:27 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	num;
+	int			i;
+	int			j;
+	int			sign;
+	long int	num;
 
 	i = 0;
 	sign = 1;
@@ -29,8 +30,14 @@ int	ft_atoi(const char *str)
 			sign = sign * -1;
 		i++;
 	}
+	while (str[i] == '0')
+		i++;
+	j = i;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		if ((i - j == 10 && ((str[i] >= '8' && sign > 0) || (str[i] >= '9'
+						&& sign < 0))) || i - j >= 11)
+			return (21474834888);
 		num = num * 10 + str[i] - 48;
 		i++;
 	}

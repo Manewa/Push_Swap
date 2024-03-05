@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   moves1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,26 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	swap_top(t_list **n)
+void	sa(t_list **n, int yn)
 {
 	int	swap;
 
 	swap = (*n)->content;
 	(*n)->content = (*n)->next->content;
 	(*n)->next->content = swap;
+	if (yn == 1)
+		write (1, "sa\n", 3);
 	return ;
 }
 
-void	dswap_top(t_list **a, t_list **b)
+void	ss(t_list **a, t_list **b)
 {
-	swap_top(a);
-	swap_top(b);
+	sa(a, 0);
+	sb(b, 0);
+	write (1, "ss\n", 3);
 	return ;
 }
 
-void	push_top(t_list **top, t_list **del)
+void	pa(t_list **top, t_list **del)
 {
 	t_list	*swap;
 
@@ -38,10 +41,11 @@ void	push_top(t_list **top, t_list **del)
 	swap = *del;
 	*del = (*del)->next;
 	ft_lstadd_front(top, swap);
+	write (1, "pa\n", 3);
 	return ;
 }
 
-void	rotate_up(t_list **n)
+void	ra(t_list **n, int yn)
 {
 	t_list	*swap;
 
@@ -49,12 +53,15 @@ void	rotate_up(t_list **n)
 	*n = (*n)->next;
 	swap->next = NULL;
 	ft_lstadd_back(n, swap);
+	if (yn == 1)
+		write (1, "ra\n", 3);
 	return ;
 }
 
-void	drotate_up(t_list **a, t_list **b)
+void	rr(t_list **a, t_list **b)
 {
-	rotate_up(a);
-	rotate_up(b);
+	ra(a, 0);
+	rb(b, 0);
+	write (1, "rr\n", 3);
 	return ;
 }

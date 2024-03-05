@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_exit()
+void	ft_exit(void)
 {
 	write(2, "Error\n", 6);
 	exit (1);
@@ -22,7 +22,7 @@ void	ft_num(char **str)
 {
 	size_t	i;
 	size_t	j;
-	
+
 	i = 1;
 	while (str[i])
 	{
@@ -52,7 +52,7 @@ void	ft_sign(char **str)
 		j = 0;
 		while (str[i][j] && (str[i][j] != '-' || str[i][j] != '+'))
 		{
-			if (str[i][j] == '-' || str[i][j] == '+')\
+			if (str[i][j] == '-' || str[i][j] == '+')
 			{
 				if ((j > 0 && str[i][j - 1] == ' ' && str[i][j + 1] >= '0' &&
 					str[i][j + 1] <= '9') || (j == 0 && str[i][j + 1] >= '0' &&
@@ -68,7 +68,7 @@ void	ft_sign(char **str)
 	return ;
 }
 
-int	ft_check_double(int *num)
+int	ft_check_double(long int *num)
 {
 	int	i;
 	int	j;

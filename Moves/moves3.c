@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_reverse.c                                    :+:      :+:    :+:   */
+/*   moves3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 05:31:25 by namalier          #+#    #+#             */
-/*   Updated: 2024/02/21 05:31:27 by namalier         ###   ########.fr       */
+/*   Created: 2024/03/01 15:47:15 by namalier          #+#    #+#             */
+/*   Updated: 2024/03/05 16:12:13 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	rev_rotate(t_list **n)
+void	rrb(t_list **n, int yn)
 {
 	t_list	*swap;
 	t_list	*tmp;
 
 	swap = (*n);
 	if ((*n)->next->next == NULL)
-		swap_top(n);
+		sb(n, 0);
 	else
 	{
 		while (swap->next->next)
@@ -29,12 +29,7 @@ void	rev_rotate(t_list **n)
 		ft_lstadd_front(n, swap);
 		tmp->next = NULL;
 	}
-	return ;
-}
-
-void	drev_rotate(t_list **a, t_list **b)
-{
-	rev_rotate(a);
-	rev_rotate(b);
+	if (yn == 1)
+		write (1, "rrb\n", 4);
 	return ;
 }

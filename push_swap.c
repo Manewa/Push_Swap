@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-void	lstcreate(t_list **a, int *split)
+void	lstcreate(t_list **a, long int *split)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (split[0] >= i)
@@ -39,12 +39,12 @@ void	lstcreate(t_list **a, int *split)
 	return (free(split));
 }
 
-int	*ft_parse(int argc, char **argv)
+long int	*ft_parse(int argc, char **argv)
 {
-	size_t i;
-	char *str;
-	int *num;
-	char **split;
+	size_t		i;
+	char		*str;
+	long int	*num;
+	char		**split;
 
 	i = 1;
 	str = "\0";
@@ -61,30 +61,33 @@ int	*ft_parse(int argc, char **argv)
 	i = 0;
 	while (split[i])
 		i++;
-	num = malloc((i + 1) * sizeof(int));
+	num = malloc((i + 1) * sizeof(long int));
 	if (!num)
 		return (ft_free(split, str, ' '), free(str), NULL);
 	num[0] = i;
 	while (i > 0)
 	{
 		num[i] = ft_atoi(split[i - 1]);
+		if (num[i] < -2147483648 || num [i] > 2147483647)
+			return (free(num), ft_free(split, str, ' '), free(str), NULL);
 		i--;
 	}
 	return (ft_free(split, str, ' '), free(str), num);
 }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int *split;
-	t_list *a;
-//	t_list *b;
+	long int	*split;
+	t_list		*a;
+	t_list		*tmp;
 
-//	split[0][0] = 0;
 	if (argc <= 1)
 		exit (1);
 	ft_check_errors(argv);
 	split = ft_parse(argc, argv);
-	if (ft_check_double(split) == 1)\
+	if (split == NULL)
+		ft_exit();
+	if (ft_check_double(split) == 1)
 	{
 		free(split);
 		ft_exit();
@@ -93,12 +96,14 @@ int main (int argc, char **argv)
 	if (!a)
 		return (free(split), 0);
 	lstcreate(&a, split);
+	tmp = a;
 	while (a->next)
 	{
 		printf("%d\n", a->content);
 		a = a->next;
 	}
 	printf("%d\n", a->content);
+	a = tmp;
 	ft_lstfree(&a);
 	return (0);
 }

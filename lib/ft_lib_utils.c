@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lib_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/01 12:48:41 by namalier          #+#    #+#             */
+/*   Updated: 2024/03/05 16:11:31 by namalier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 #include <stdlib.h>
-#include "push_swap.h"
-#include<stdio.h>
+#include "../push_swap.h"
+#include <stdio.h>
 
 size_t	ft_strlen(const char *c)
 {
@@ -68,6 +80,7 @@ void	ft_free(char **str, char const *s, char c)
 		free(str[i]);
 		i++;
 	}
+	free(str);
 	return ;
 }
 
