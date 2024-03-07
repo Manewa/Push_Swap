@@ -5,9 +5,15 @@ t_list	**main_algo(t_list **a)
 	t_list	*b;
 	t_list	*tmp;
 	
-	b = ft_lstnew(1);
-	tmp = *a;
-	fill_b(a, &b);
+	b = NULL;
+	if (sorted(a) == 1)
+		tmp = *a;
+	else
+	{
+		tmp = *a;
+		fill_b(a, &b);
+	}
+	ft_testlst(a, &b);
 	return (a);
 }
 
@@ -25,12 +31,9 @@ void	fill_b(t_list **a, t_list **b)
 	}
 	if (i < 2)
 		return ;
-	else
-	{
-		while ((*a)->next)
-			pb(b, a);
-	}
 	*a = tmp;
-	ft_testlst(a, b);
+	while ((*a)->next->next->next)
+		pb(b, a);
+	
 	return ;
 }

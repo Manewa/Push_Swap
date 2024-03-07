@@ -63,7 +63,7 @@ void	pb(t_list **top, t_list **del)
 	swap = *del;
 	*del = (*del)->next;
 	ft_lstadd_front(top, swap);
-	write (1, "pb\n", 3);
+	write (1, "pb\n ", 3);
 	return ;
 }
 

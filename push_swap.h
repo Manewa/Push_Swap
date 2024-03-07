@@ -84,6 +84,10 @@ int			main(int argc, char **argv);
 t_list	**main_algo(t_list **a);
 void	fill_b(t_list **a, t_list **b);
 
+/********			check_algo				******/
+
+int		sorted(t_list **a);
+
 /********************TESTS A SUPPRIMER************/
 
 void	ft_testlst(t_list **a, t_list **b);

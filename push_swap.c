@@ -80,6 +80,8 @@ void	ft_testlst(t_list **a, t_list **b)
 	t_list	*tmpa;
 	t_list	*tmpb;
 
+	if (*b == NULL)
+		*b = ft_lstnew(-1);
 	tmpa = *a;
 	tmpb = *b;
 	while ((*a)->next || (*b)->next)
@@ -91,6 +93,8 @@ void	ft_testlst(t_list **a, t_list **b)
 			(*a)->content = -1;
 		if ((*b)->next)
 			*b = (*b)->next;
+		else
+			(*b)->content = -1;
 	}
 	printf("%d		|		%d\n", (*a)->content, (*b)->content);
 	printf("A		|		B\n");
