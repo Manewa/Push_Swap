@@ -100,6 +100,7 @@ void	ft_testlst(t_list **a, t_list **b)
 	printf("A		|		B\n");
 	*a = tmpa;
 	*b = tmpb;
+	ft_lstfree(b);
 	return ;
 }
 

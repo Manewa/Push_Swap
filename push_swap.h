@@ -21,6 +21,9 @@
 typedef struct s_list
 {
 	int				content;
+	int				move_up;
+	int				move_down;
+	int				count_move;
 	struct s_list	*next;
 }					t_list;
 
@@ -81,15 +84,16 @@ int			main(int argc, char **argv);
 
 /********			algo					******/
 
-t_list	**main_algo(t_list **a);
-void	fill_b(t_list **a, t_list **b);
+void		count_move(t_list **head);
+t_list		**main_algo(t_list **a);
+void		fill_b(t_list **a, t_list **b);
 
 /********			check_algo				******/
 
-int		sorted(t_list **a);
+int			sorted(t_list **a);
 
 /********************TESTS A SUPPRIMER************/
 
-void	ft_testlst(t_list **a, t_list **b);
+void		ft_testlst(t_list **a, t_list **b);
 
 #endif
