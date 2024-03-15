@@ -86,6 +86,7 @@ int			main(int argc, char **argv);
 
 /********			algo					******/
 
+void		pass_to_b(t_list **head_a, t_list **b, t_list **pass);
 t_list		**main_algo(t_list **a);
 void		fill_b(t_list **a, t_list **b);
 
@@ -98,6 +99,7 @@ int			sorted(t_list **a);
 void		count_a(t_list **head);
 void		count_moves(t_list **head_a);
 void		count_b(t_list **head_a, t_list **head_b);
+void		find_pass(t_list **head_a, t_list **pass);
 
 /********************TESTS A SUPPRIMER************/
 

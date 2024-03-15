@@ -97,10 +97,10 @@ void	ft_testlst(t_list **a, t_list **b)
 			(*b)->content = -1;
 	}
 	printf("%d		|		%d\n", (*a)->content, (*b)->content);
-	printf("A		|		B\n");
+	printf("A		|		B\n===========\n");
 	*a = tmpa;
 	*b = tmpb;
-	ft_lstfree(b);
+//	ft_lstfree(b);
 	return ;
 }
 

@@ -24,7 +24,6 @@ void	count_a(t_list **head)
 			search->move_down = search->move_down + 1;
 			tmp = tmp->next;
 		}
-		printf("Up : %d || Down %d\n", search->move_up, search->move_down);
 		//ajouter fonction pour compter les mouvements pour le mettre a la
 		//bonne place en stack b
 	}
@@ -55,6 +54,7 @@ void	count_moves(t_list **head_a)
 			else
 				search->count_move = search->rrb + search->move_down;	
 		}
+		printf("Count_moves = %d\n", search->count_move);
 	}
 }
 
@@ -65,13 +65,13 @@ void	count_b(t_list **head_a, t_list **head_b)
 
 	search_a = *head_a;
 	search_a->rrb = -1;
-	while (search_a->rrb != 1)
+	while (search_a->next)
 	{
+		if (search_a->rrb >= 0)
+			search_a = search_a->next;
 		search_a->rb = 0;
 		search_a->rrb = 1;
 		search_b = *head_b;
-		if (search_a->rrb >= 0)
-			search_a = search_a->next;
 		while (search_a->content < search_b->content && search_b->next)
 		{
 			search_a->rb += 1;
@@ -84,4 +84,21 @@ void	count_b(t_list **head_a, t_list **head_b)
 		}
 	}
 	count_moves(head_a);
+}
+
+void	find_pass(t_list **head_a, t_list **pass)
+{
+	t_list	*tmp;
+
+	pass = head_a;
+	tmp = *head_a;
+	while (tmp->next)
+	{
+		if ((*pass)->count_move > tmp->count_move)
+			*pass = tmp;
+		tmp = tmp->next;
+	}
+	if ((*pass)->count_move > tmp->count_move)
+		*pass = tmp;
+	return ;
 }
