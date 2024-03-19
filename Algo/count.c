@@ -24,8 +24,6 @@ void	count_a(t_list **head)
 			search->move_down = search->move_down + 1;
 			tmp = tmp->next;
 		}
-		//ajouter fonction pour compter les mouvements pour le mettre a la
-		//bonne place en stack b
 	}
 }
 
@@ -72,16 +70,30 @@ void	count_b(t_list **head_a, t_list **head_b)
 		search_a->rb = 0;
 		search_a->rrb = 1;
 		search_b = *head_b;
-		while (search_a->content < search_b->content && search_b->next)
+		if (search_a->content > search_b->content)
 		{
-			search_a->rb += 1;
-			search_b = search_b->next;
+			while (search_a->content > search_b->content && search_b->next)
+			{
+				search_a->rb += 1;
+				search_b = search_b->next;
+			}
+		}
+		else
+		{
+			while (search_a->content < search_b->content && search_b->next)
+			{
+				search_b = search_b->next;
+				search_a->rb += 1;
+			}
 		}
 		while (search_b->next)
 		{
 			search_a->rrb += 1;
 			search_b = search_b->next;
 		}
+		
+	//printf("Count rb = %d\n", search_a->rb);
+	//printf("Count rrb = %d\n", search_a->rrb);
 	}
 	count_moves(head_a);
 }
@@ -90,7 +102,7 @@ void	find_pass(t_list **head_a, t_list **pass)
 {
 	t_list	*tmp;
 
-	pass = head_a;
+	*pass = *head_a;
 	tmp = *head_a;
 	while (tmp->next)
 	{
@@ -101,4 +113,20 @@ void	find_pass(t_list **head_a, t_list **pass)
 	if ((*pass)->count_move > tmp->count_move)
 		*pass = tmp;
 	return ;
+}
+
+int	find_highest(t_list **head_b)
+{
+	int	highest;
+	t_list	*tmpb;
+
+	tmpb = *head_b;
+	highest = tmpb->content;
+	while (tmpb->next)
+	{
+		tmpb = tmpb->next;
+		if (highest < tmpb->content)
+			highest = tmpb->content;
+	}
+	return (highest);
 }

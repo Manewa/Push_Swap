@@ -1,34 +1,5 @@
 #include "../push_swap.h"
 
-void	pass_to_b(t_list **head_a, t_list **head_b, t_list **pass)
-{
-	if ((*pass)->move_up >= (*pass)->move_down)
-	{
-		while ((*pass)->move_down != 0)
-		{
-			rra(head_a, 1);
-			(*pass)->move_down -= 1;
-		}
-	}
-	else
-	{
-		while ((*pass)->move_up != 0)
-		{
-			{
-				ra(head_a, 1);
-				(*pass)->move_up -= 1;
-			}
-		}
-	}
-	pb (head_b, head_a);
-//	ft_testlst(head_a, head_b);
-	return ;
-//	Ici, la fonction ne passe que depuis la stack a et ne bouge pas encore la stack b
-//	il faut donc chercher a optimiser la stack b en meme temps (Si ra et rb alors
-//	faire des rr, idem pour rrr, jusqu'a ce que l'un soit = 0.
-//	Multiples fonctions pour faire tout ca a cause des 25 lignes.
-}
-
 t_list	**main_algo(t_list **a)
 {
 	t_list	*b;
@@ -50,10 +21,12 @@ void	fill_b(t_list **a, t_list **b)
 {
 	t_list	*pass;
 	size_t	i;
+	int		highest;
 
 	i = 0;
-	if ((*a)->next && (*a)->next->next)
+	if ((*a)->next && (*a)->next->next && (*a)->next->next)
 	{
+		pb(b, a);
 		pb(b, a);
 		pb(b, a);
 	}
@@ -64,18 +37,21 @@ void	fill_b(t_list **a, t_list **b)
 	}
 	while ((*a)->next && (*a)->next->next && (*a)->next->next->next)
 	{
+		highest = find_highest(b);
 		count_a(a);
 		count_b(a, b);
 		find_pass(a, &pass);
+		if (pass->content > highest)
+			pass_to_highest(&pass, b);
 		pass_to_b(a, b, &pass);
-		
-		// 		Segfault normal -> Boucle infinie juste au dessus
-		// 		puisque pas de mouvement demande encore.
-		//Verifier si le count_move fonctionne bien puis :
-		// !! DONE !! 1) Trouver le plus petit count_move
-		// 2) Coder le nouvement simple pas opti de ra et rb puis finir sur un sa
-		// 3) Regarder si ca fonctionne
-		// 4) Implementer rr et rrr
+//		ft_testlst(a, b);
+		//TROP BIEN ! La stack B est officiellement TRIEEEEEEEEEEEEEEE
+		//BRAVOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+		//	Maintenant il faut :
+		// Renvoyer vers a en faisant attention a bien mettre les bons chiffres
+		// aux bons endroits par rapport aux 3 de a
+		// Implementer rr et rrr
 	}
 	return ;
 }
+
