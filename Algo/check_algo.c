@@ -13,3 +13,19 @@ int	sorted(t_list **a)
 	}
 	return (1);
 }
+
+int	find_lowest(t_list **head_a)
+{
+	int		lowest;
+	t_list	*tmpa;
+
+	tmpa = *head_a;
+	lowest = tmpa->content;
+	while (tmpa->next)
+	{
+		tmpa = tmpa->next;
+		if (lowest > tmpa->content)
+			lowest = tmpa->content;
+	}
+	return (lowest);
+}

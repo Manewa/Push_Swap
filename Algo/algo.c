@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-t_list	**main_algo(t_list **a)
+void	main_algo(t_list **a)
 {
 	t_list	*b;
 	t_list	*tmp;
@@ -12,9 +12,10 @@ t_list	**main_algo(t_list **a)
 	{
 		tmp = *a;
 		fill_b(a, &b);
+		pass_to_a(a, &b);
 	}
 	ft_testlst(a, &b);
-	return (a);
+	return ;
 }
 
 void	fill_b(t_list **a, t_list **b)
@@ -45,8 +46,6 @@ void	fill_b(t_list **a, t_list **b)
 			pass_to_highest(&pass, b);
 		pass_to_b(a, b, &pass);
 //		ft_testlst(a, b);
-		//TROP BIEN ! La stack B est officiellement TRIEEEEEEEEEEEEEEE
-		//BRAVOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 		//	Maintenant il faut :
 		// Renvoyer vers a en faisant attention a bien mettre les bons chiffres
 		// aux bons endroits par rapport aux 3 de a

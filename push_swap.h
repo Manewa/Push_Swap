@@ -86,12 +86,13 @@ int			main(int argc, char **argv);
 
 /********			algo					******/
 
-t_list		**main_algo(t_list **a);
+void		main_algo(t_list **a);
 void		fill_b(t_list **a, t_list **b);
 
 /********			check_algo				******/
 
 int			sorted(t_list **a);
+int			find_lowest(t_list **head_a);
 
 /********			count					******/
 
@@ -106,6 +107,8 @@ int			find_highest(t_list **head_b);
 void		position_b(t_list **head_b, t_list **pass);
 void		pass_to_b(t_list **head_a, t_list **b, t_list **pass);
 void		pass_to_highest(t_list **pass, t_list **b);
+void		pass_to_a(t_list **head_a, t_list **head_b);
+void		a_to_lowest(t_list **head);
 
 /********************TESTS A SUPPRIMER************/
 
