@@ -21,10 +21,13 @@
 typedef struct s_list
 {
 	int				content;
-	int				move_up;
-	int				move_down;
+	int				ra;
+	int				rra;
 	int				rb;
 	int				rrb;
+	int				rr;
+	int				rrr;
+	int				addr;
 	int				count_move;
 	struct s_list	*next;
 }					t_list;
@@ -86,13 +89,15 @@ int			main(int argc, char **argv);
 
 /********			algo					******/
 
+void		count_move_rrr(t_list **search);
 void		main_algo(t_list **a);
 void		fill_b(t_list **a, t_list **b);
 
 /********			check_algo				******/
 
 int			sorted(t_list **a);
-int			find_lowest(t_list **head_a);
+t_list		*check_highest_lowest(t_list **search_a, t_list **head_b);
+t_list		*check_pos_a(t_list **search_a, t_list **head_b);
 
 /********			count					******/
 
@@ -100,15 +105,27 @@ void		count_a(t_list **head);
 void		count_moves(t_list **head_a);
 void		count_b(t_list **head_a, t_list **head_b);
 void		find_pass(t_list **head_a, t_list **pass);
-int			find_highest(t_list **head_b);
+void			count_rrr(t_list **head_a);
 
 /********			moves_algo				******/
 
 void		position_b(t_list **head_b, t_list **pass);
 void		pass_to_b(t_list **head_a, t_list **b, t_list **pass);
-void		pass_to_highest(t_list **pass, t_list **b);
 void		pass_to_a(t_list **head_a, t_list **head_b);
+void		count_order(t_list **head_a);
+void		move_to_min(t_list **head_a, int ra, int rra);
+
+/********			moves_algo2				******/
+
+void	move_rrr(t_list **head_a, t_list **head_b, t_list **pass);
+
+/********			move_top_bot			******/
+
+int			find_lowest(t_list **head_b);
+int			find_highest(t_list **head_b);
 void		a_to_lowest(t_list **head);
+void		pass_to_highest(t_list **pass, t_list **b);
+void		b_to_highest(t_list **head);
 
 /********************TESTS A SUPPRIMER************/
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   count.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/25 12:54:26 by namalier          #+#    #+#             */
+/*   Updated: 2024/03/25 12:54:27 by namalier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 void	count_a(t_list **head)
@@ -6,22 +18,22 @@ void	count_a(t_list **head)
 	t_list	*tmp;
 
 	search = *head;
-	search->move_down = -1;
-	while (search->move_down != 1)
+	search->rra = -1;
+	while (search->rra != 1)
 	{
-		if (search->move_down >= 0)
+		if (search->rra >= 0)
 				search = search->next;
 		tmp = *head;
-		search->move_up = 0;
-		search->move_down = 1;
+		search->ra = 0;
+		search->rra = 1;
 		while (tmp->content != search->content)
 		{
-			search->move_up = search->move_up + 1;
+			search->ra = search->ra + 1;
 			tmp = tmp->next;
 		}
 		while (tmp->next)
 		{
-			search->move_down = search->move_down + 1;
+			search->rra = search->rra + 1;
 			tmp = tmp->next;
 		}
 	}
@@ -33,26 +45,24 @@ void	count_moves(t_list **head_a)
 	t_list	*search;
 	
 	search = *head_a;
-	search->count_move = -1;
-	while (search->next)
+	while (search)
 	{
-		if (search->count_move >= 0)
-			search = search->next;
-		if (search->rb < search->rrb)
+		if (search->rb <= search->rrb)
 		{
-			if (search->move_up < search->move_down)
-				search->count_move = search->rb + search->move_up;
+			if (search->ra <= search->rra)
+				search->count_move = search->rb + search->ra;
 			else
-				search->count_move = search->rb + search->move_down;
-		}
+				search->count_move = search->rb + search->rra;
+			}
 		else
-		{
-			if (search->move_up < search->move_down)
-				search->count_move = search->rrb + search->move_up;
-			else
-				search->count_move = search->rrb + search->move_down;	
-		}
-		printf("Count_moves = %d\n", search->count_move);
+			{
+				if (search->ra < search->rra)
+					search->count_move = search->rrb + search->ra;
+				else
+					search->count_move = search->rrb + search->rra;	
+			}
+		count_move_rrr(&search);
+		search = search->next;
 	}
 }
 
@@ -62,40 +72,24 @@ void	count_b(t_list **head_a, t_list **head_b)
 	t_list	*search_b;
 
 	search_a = *head_a;
-	search_a->rrb = -1;
-	while (search_a->next)
+	while (search_a)
 	{
-		if (search_a->rrb >= 0)
-			search_a = search_a->next;
-		search_a->rb = 0;
-		search_a->rrb = 1;
 		search_b = *head_b;
-		if (search_a->content > search_b->content)
-		{
-			while (search_a->content > search_b->content && search_b->next)
-			{
-				search_a->rb += 1;
-				search_b = search_b->next;
-			}
-		}
+		search_a->rb = 0;
+		search_a->rrb = 0;
+		if (search_a->content > find_highest(head_b)
+				|| search_a->content < find_lowest(head_b))
+			search_b = check_highest_lowest(&search_a, head_b);
 		else
-		{
-			while (search_a->content < search_b->content && search_b->next)
-			{
-				search_b = search_b->next;
-				search_a->rb += 1;
-			}
-		}
-		while (search_b->next)
+			search_b = check_pos_a(&search_a, head_b);
+		while (search_b)
 		{
 			search_a->rrb += 1;
 			search_b = search_b->next;
 		}
-		
-	//printf("Count rb = %d\n", search_a->rb);
-	//printf("Count rrb = %d\n", search_a->rrb);
+		count_rrr(&search_a);
+		search_a = search_a->next;
 	}
-	count_moves(head_a);
 }
 
 void	find_pass(t_list **head_a, t_list **pass)
@@ -104,29 +98,45 @@ void	find_pass(t_list **head_a, t_list **pass)
 
 	*pass = *head_a;
 	tmp = *head_a;
-	while (tmp->next)
+	while (tmp)
 	{
 		if ((*pass)->count_move > tmp->count_move)
 			*pass = tmp;
 		tmp = tmp->next;
 	}
-	if ((*pass)->count_move > tmp->count_move)
-		*pass = tmp;
 	return ;
 }
 
-int	find_highest(t_list **head_b)
+void	count_rrr(t_list **search_a)
 {
-	int	highest;
-	t_list	*tmpb;
+	t_list	*tmp_a;
+	int		countra;
+	int		countrb;
 
-	tmpb = *head_b;
-	highest = tmpb->content;
-	while (tmpb->next)
+	tmp_a = *search_a;
+	tmp_a->rr = 0;
+	tmp_a->rrr = 0;
+	if (tmp_a->ra <= tmp_a->rra && tmp_a->rb <= tmp_a->rrb)
 	{
-		tmpb = tmpb->next;
-		if (highest < tmpb->content)
-			highest = tmpb->content;
+		countra = (*search_a)->ra;
+		countrb = (*search_a)->rb;
+		while (countra != 0 && countrb != 0)
+		{
+			countra -= 1;
+			countrb -= 1;
+			tmp_a->rr += 1;
+		}
 	}
-	return (highest);
+	else if (tmp_a->rra <= tmp_a->ra && tmp_a->rrb <= tmp_a->rb)
+	{
+		countra = (*search_a)->rra;
+		countrb = (*search_a)->rrb;
+		while (countra != 0 && countrb != 0)
+		{
+			countra -= 1;
+			countrb -= 1;
+			tmp_a->rrr += 1;
+		}
+	}
 }
+
