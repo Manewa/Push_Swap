@@ -67,22 +67,38 @@ void	pass_to_a(t_list **head_a, t_list **head_b)
 {
 	t_list	*tail;
 	int		lowest_a;
+//	int 	i;
 	
-	a_to_lowest(head_a);
+	sort_a_at_three(head_a);
 	lowest_a = (*head_a)->content;
-	while ((*head_b))
+	while (*head_b)
 	{
 		tail = ft_lstlast(*head_a);
 		while ((*head_b) && (*head_b)->content > tail->content)
+		{
+			if (lowest_all(head_a, head_b) == tail->content
+				&& (*head_b)->content == highest_all(head_a, head_b))
+				rra(head_a, 1);	
 			pa(head_a, head_b);
+		}
+		if ((*head_b) && tail->content == lowest_all(head_a, head_b))
+			rra(head_a, 1);
 		while ((*head_b) && (*head_b)->content < tail->content)
 		{
 			rra(head_a, 1);
 			tail = ft_lstlast(*head_a);
+			if (lowest_all(head_a, head_b) == tail->content
+					&& (*head_b)->content == highest_all(head_a, head_b))
+			rra(head_a, 1);	
 			if ((*head_a)->content == lowest_a)
 			{
 				while ((*head_b) && (*head_b)->content < (*head_a)->content)
+				{
+					if (lowest_all(head_a, head_b) == tail->content
+						&& (*head_b)->content == highest_all(head_a, head_b))
+						rra(head_a, 1);	
 					pa(head_a, head_b);
+				}
 			}
 		}
 	}

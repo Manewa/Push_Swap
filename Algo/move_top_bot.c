@@ -1,20 +1,29 @@
 #include "../push_swap.h"
 
-void	b_to_highest(t_list **head)
+void	sort_a_at_three(t_list **head_a)
 {
-	int	highest;
-	int	i;
-
-	i = 0;
-	highest = find_highest(head);
-	while ((*head)->content != highest)
-		rrb(head, 1);
-	if ((*head)->next->content < (*head)->next->next->content)
+	if ((*head_a)->content == find_lowest(head_a)
+			&& (*head_a)->next->content > (*head_a)->next->next->content)
 	{
-		sb(head, 1);
-		rb(head, 1);
+		sa(head_a, 1);
+		ra(head_a, 1);
 	}
-	return ;	
+	else if ((*head_a)->next->content == find_lowest(head_a)
+			&& (*head_a)->content > (*head_a)->next->next->content)
+		ra(head_a, 1);
+	else if ((*head_a)->next->content == find_lowest(head_a)
+			&& (*head_a)->content < (*head_a)->next->next->content)
+		sa(head_a, 1);
+	else if((*head_a)->next->next->content == find_lowest(head_a)
+			&& (*head_a)->content > (*head_a)->next->content)
+	{
+		sa(head_a, 1);
+		rra(head_a, 1);
+	}
+	else if((*head_a)->next->next->content == find_lowest(head_a)
+			&& (*head_a)->content < (*head_a)->next->content)
+		rra(head_a, 1);
+	return;
 }
 
 void	a_to_lowest(t_list **head)
@@ -24,9 +33,10 @@ void	a_to_lowest(t_list **head)
 
 	i = 0;
 	lowest = find_lowest(head);
-	while ((*head)->content != lowest)
+	while ((*head)->next && (*head)->content != lowest)
 		rra(head, 1);
-	if ((*head)->next->content > (*head)->next->next->content)
+	if ((*head)->next && (*head)->next->next
+				&& (*head)->next->content > (*head)->next->next->content)
 	{
 		sa(head, 1);
 		ra(head, 1);

@@ -105,7 +105,7 @@ void		count_a(t_list **head);
 void		count_moves(t_list **head_a);
 void		count_b(t_list **head_a, t_list **head_b);
 void		find_pass(t_list **head_a, t_list **pass);
-void			count_rrr(t_list **head_a);
+void		count_rrr(t_list **head_a);
 
 /********			moves_algo				******/
 
@@ -117,7 +117,11 @@ void		move_to_min(t_list **head_a, int ra, int rra);
 
 /********			moves_algo2				******/
 
-void	move_rrr(t_list **head_a, t_list **head_b, t_list **pass);
+void		move_rrr(t_list **head_a, t_list **head_b, t_list **pass);
+long int	lowest_all(t_list **head_a, t_list **head_b);
+long int	highest_all(t_list **head_a, t_list **head_b);
+void		under_five(t_list **head_a, t_list **head_b);
+void		sort_b_under_five(t_list **head_b);
 
 /********			move_top_bot			******/
 
@@ -125,7 +129,7 @@ int			find_lowest(t_list **head_b);
 int			find_highest(t_list **head_b);
 void		a_to_lowest(t_list **head);
 void		pass_to_highest(t_list **pass, t_list **b);
-void		b_to_highest(t_list **head);
+void		sort_a_at_three(t_list **head_a);
 
 /********************TESTS A SUPPRIMER************/
 

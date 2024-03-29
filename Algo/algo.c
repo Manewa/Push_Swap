@@ -34,7 +34,13 @@ void	main_algo(t_list **a)
 	{
 		tmp = *a;
 		fill_b(a, &b);
-		pass_to_a(a, &b);
+		if ((*a)->next && (*a)->next->next)
+			pass_to_a(a, &b);
+		else
+		{
+			a_to_lowest(a);
+			under_five(a, &b);
+		}
 		count_order(a);
 	}
 //	ft_testlst(a, &b);
@@ -48,16 +54,16 @@ void	fill_b(t_list **a, t_list **b)
 	int		highest;
 
 	i = 0;
-	if ((*a)->next && (*a)->next->next && (*a)->next->next)
+	if ((*a)->next && (*a)->next->next && (*a)->next->next->next)
 	{
 		pb(b, a);
 		pb(b, a);
 		pb(b, a);
-		b_to_highest(b);
+		sort_b_under_five(b);
 	}
 	else
 	{
-		ra(a, 1);
+		a_to_lowest(a);
 		return ;
 	}
 	while ((*a)->next && (*a)->next->next && (*a)->next->next->next)
