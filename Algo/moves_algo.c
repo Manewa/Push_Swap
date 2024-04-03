@@ -71,38 +71,43 @@ void	pass_to_a(t_list **head_a, t_list **head_b)
 	
 	sort_a_at_three(head_a);
 	lowest_a = (*head_a)->content;
-	while (*head_b)
+	while ((*head_b)->next)
+	{
+		tail = ft_lstlast(*head_a);
+		while ((*head_b) && (*head_b)->next
+				&& (*head_b)->content < (*head_a)->content
+				&& (*head_b)->content > (*head_b)->next->content)
+			pa(head_a, head_b);
+		while ((*head_a) && (*head_a)->content > tail->content 
+				&& tail->content > (*head_a)->content)
+		{
+			rra(head_a, 1);
+			tail = ft_lstlast(*head_a);
+		}
+		while ((*head_b) && (*head_b)->next
+				&& (*head_b)->content > (*head_b)->next->content
+				&& (*head_b)->content > tail->content)
+			pa(head_a, head_b);
+	}
+/*	while (*head_b)
 	{
 		tail = ft_lstlast(*head_a);
 		while ((*head_b) && (*head_b)->content > tail->content)
-		{
-			if (lowest_all(head_a, head_b) == tail->content
-				&& (*head_b)->content == highest_all(head_a, head_b))
-				rra(head_a, 1);	
 			pa(head_a, head_b);
-		}
 		if ((*head_b) && tail->content == lowest_all(head_a, head_b))
 			rra(head_a, 1);
 		while ((*head_b) && (*head_b)->content < tail->content)
 		{
 			rra(head_a, 1);
 			tail = ft_lstlast(*head_a);
-			if (lowest_all(head_a, head_b) == tail->content
-					&& (*head_b)->content == highest_all(head_a, head_b))
-			rra(head_a, 1);	
 			if ((*head_a)->content == lowest_a)
 			{
 				while ((*head_b) && (*head_b)->content < (*head_a)->content)
-				{
-					if (lowest_all(head_a, head_b) == tail->content
-						&& (*head_b)->content == highest_all(head_a, head_b))
-						rra(head_a, 1);	
 					pa(head_a, head_b);
-				}
 			}
 		}
 	}
-/*	while (tail->content != find_highest(head_a))
+*//*	while (tail->content != find_highest(head_a))
 	{
 		ra(head_a, 1);
 		tail = ft_lstlast(*head_a);
@@ -110,13 +115,13 @@ void	pass_to_a(t_list **head_a, t_list **head_b)
 	return ;
 }
 
-void	move_to_min(t_list **head_a, int mra, int mrra)
+void	move_to_max(t_list **head_a, int mra, int mrra)
 {
 	if (mra < mrra)
 	{
 		while (mra != 0)
 		{
-			ra(head_a, 1);
+			rb(head_a, 1);
 			mra -= 1;
 		}
 	}
@@ -124,32 +129,32 @@ void	move_to_min(t_list **head_a, int mra, int mrra)
 	{
 		while (mrra != 0)
 		{
-			rra(head_a, 1);
+			rrb(head_a, 1);
 			mrra -= 1;
 		}
 	}
 }
 
-void	count_order(t_list **head_a)
+void	count_order(t_list **head_b)
 {
-	t_list *tmp_a;
-	int 	ra;
-	int		rra;
-	int		lowest;
+	t_list *tmp_b;
+	int 	rb;
+	int		rrb;
+	int		highest;
 
-	ra = 0;
-	rra = 0;
-	tmp_a = *head_a;
-	lowest = find_lowest(head_a);
-	while (tmp_a->content != lowest)
+	rb = 0;
+	rrb = 0;
+	tmp_b = *head_b;
+	highest = find_highest(head_b);
+	while (tmp_b->content != highest)
 	{
-		ra += 1;
-		tmp_a = tmp_a->next;
+		rb += 1;
+		tmp_b = tmp_b->next;
 	}
-	while (tmp_a)
+	while (tmp_b)
 	{
-		rra += 1;
-		tmp_a = tmp_a->next;
+		rrb += 1;
+		tmp_b = tmp_b->next;
 	}
-	move_to_min(head_a, ra, rra);
+	move_to_max(head_b, rb, rrb);
 }

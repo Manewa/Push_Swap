@@ -107,35 +107,33 @@ void	find_pass(t_list **head_a, t_list **pass)
 	return ;
 }
 
-void	count_rrr(t_list **search_a)
+void	count_rrr(t_list **search)
 {
-	t_list	*tmp_a;
 	int		countra;
 	int		countrb;
 
-	tmp_a = *search_a;
-	tmp_a->rr = 0;
-	tmp_a->rrr = 0;
-	if (tmp_a->ra <= tmp_a->rra && tmp_a->rb <= tmp_a->rrb)
+	(*search)->rr = 0;
+	(*search)->rrr = 0;
+	if ((*search)->ra <= (*search)->rra && (*search)->rb <= (*search)->rrb)
 	{
-		countra = (*search_a)->ra;
-		countrb = (*search_a)->rb;
+		countra = (*search)->ra;
+		countrb = (*search)->rb;
 		while (countra != 0 && countrb != 0)
 		{
 			countra -= 1;
 			countrb -= 1;
-			tmp_a->rr += 1;
+			(*search)->rr += 1;
 		}
 	}
-	else if (tmp_a->rra <= tmp_a->ra && tmp_a->rrb <= tmp_a->rb)
+	else if ((*search)->rra <= (*search)->ra && (*search)->rrb <= (*search)->rb)
 	{
-		countra = (*search_a)->rra;
-		countrb = (*search_a)->rrb;
+		countra = (*search)->rra;
+		countrb = (*search)->rrb;
 		while (countra != 0 && countrb != 0)
 		{
 			countra -= 1;
 			countrb -= 1;
-			tmp_a->rrr += 1;
+			(*search)->rrr += 1;
 		}
 	}
 }

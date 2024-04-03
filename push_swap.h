@@ -105,15 +105,15 @@ void		count_a(t_list **head);
 void		count_moves(t_list **head_a);
 void		count_b(t_list **head_a, t_list **head_b);
 void		find_pass(t_list **head_a, t_list **pass);
-void		count_rrr(t_list **head_a);
+void		count_rrr(t_list **search);
 
 /********			moves_algo				******/
 
 void		position_b(t_list **head_b, t_list **pass);
 void		pass_to_b(t_list **head_a, t_list **b, t_list **pass);
 void		pass_to_a(t_list **head_a, t_list **head_b);
-void		count_order(t_list **head_a);
-void		move_to_min(t_list **head_a, int ra, int rra);
+void		count_order(t_list **head_b);
+void		move_to_max(t_list **head_b, int rb, int rrb);
 
 /********			moves_algo2				******/
 
