@@ -67,52 +67,36 @@ void	pass_to_a(t_list **head_a, t_list **head_b)
 {
 	t_list	*tail;
 	int		lowest_a;
-//	int 	i;
 	
 	sort_a_at_three(head_a);
 	lowest_a = (*head_a)->content;
-	while ((*head_b)->next)
+	if ((*head_b)->content < (*head_b)->next->content)
+		sb(head_b, 1);
+	while (*head_b && (*head_b)->next)
 	{
 		tail = ft_lstlast(*head_a);
-		while ((*head_b) && (*head_b)->next
-				&& (*head_b)->content < (*head_a)->content
-				&& (*head_b)->content > (*head_b)->next->content)
+		while (*head_b && (*head_b)->content > tail->content)
 			pa(head_a, head_b);
-		while ((*head_a) && (*head_a)->content > tail->content 
-				&& tail->content > (*head_a)->content)
+		rra(head_a, 1);
+		tail = ft_lstlast(*head_a);
+		while (*head_b && (*head_b)->content < tail->content
+				&& tail->content < (*head_a)->content)
 		{
 			rra(head_a, 1);
 			tail = ft_lstlast(*head_a);
 		}
-		while ((*head_b) && (*head_b)->next
-				&& (*head_b)->content > (*head_b)->next->content
-				&& (*head_b)->content > tail->content)
+		while (*head_b && (*head_b)->content > tail->content)
 			pa(head_a, head_b);
-	}
-/*	while (*head_b)
-	{
-		tail = ft_lstlast(*head_a);
-		while ((*head_b) && (*head_b)->content > tail->content)
-			pa(head_a, head_b);
-		if ((*head_b) && tail->content == lowest_all(head_a, head_b))
-			rra(head_a, 1);
-		while ((*head_b) && (*head_b)->content < tail->content)
+		while (*head_b && (*head_b)->content < tail->content
+				&& tail->content < (*head_a)->content)
 		{
 			rra(head_a, 1);
 			tail = ft_lstlast(*head_a);
-			if ((*head_a)->content == lowest_a)
-			{
-				while ((*head_b) && (*head_b)->content < (*head_a)->content)
-					pa(head_a, head_b);
-			}
 		}
+		while (*head_b)
+			pa (head_a, head_b);
 	}
-*//*	while (tail->content != find_highest(head_a))
-	{
-		ra(head_a, 1);
-		tail = ft_lstlast(*head_a);
-	}*/
-	return ;
+	count_order_a(head_a);
 }
 
 void	move_to_max(t_list **head_a, int mra, int mrra)

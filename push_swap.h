@@ -123,6 +123,11 @@ long int	highest_all(t_list **head_a, t_list **head_b);
 void		under_five(t_list **head_a, t_list **head_b);
 void		sort_b_under_five(t_list **head_b);
 
+/********			moves_algo3				******/
+
+void		count_order_a(t_list **head_a);
+void		move_to_min(t_list **head_a, int mra, int mrra);
+
 /********			move_top_bot			******/
 
 int			find_lowest(t_list **head_b);

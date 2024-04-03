@@ -74,6 +74,7 @@ void	fill_b(t_list **a, t_list **b)
 		if ((*a)->next->next->next)
 			pb(b, a);
 		pass_to_a(a, b);
+		return ;
 	}
 	else
 	{
