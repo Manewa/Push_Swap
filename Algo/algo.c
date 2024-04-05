@@ -41,7 +41,10 @@ void	main_algo(t_list **a)
 			a_to_lowest(a);
 			under_five(a, &b);
 		}*/
-		count_order(&b);
+		if (b && b->next && b->next->next)
+			count_order(&b);
+		else
+			count_order_a(a);
 		while (b)
 		{
 			b = b->next;

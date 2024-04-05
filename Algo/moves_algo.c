@@ -70,9 +70,9 @@ void	pass_to_a(t_list **head_a, t_list **head_b)
 	
 	sort_a_at_three(head_a);
 	lowest_a = (*head_a)->content;
-	if ((*head_b)->content < (*head_b)->next->content)
+	if ((*head_b)->next && (*head_b)->content < (*head_b)->next->content)
 		sb(head_b, 1);
-	while (*head_b && (*head_b)->next)
+	while (*head_b)
 	{
 		tail = ft_lstlast(*head_a);
 		while (*head_b && (*head_b)->content > tail->content)
@@ -96,7 +96,6 @@ void	pass_to_a(t_list **head_a, t_list **head_b)
 		while (*head_b)
 			pa (head_a, head_b);
 	}
-	count_order_a(head_a);
 }
 
 void	move_to_max(t_list **head_a, int mra, int mrra)
