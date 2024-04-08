@@ -14,11 +14,12 @@
 
 void	count_move_rrr(t_list **search)
 {
-	if ((*search)->rr <= (*search)->rrr && search)
+	(*search)->addr = 0;
+	if ((*search)->rr != 0)
 		(*search)->addr = (*search)->ra + (*search)->rb - (*search)->rr;
-	else if ((*search)->rrr < (*search)->rr)
+	else if ((*search)->rrr != 0)
 		(*search)->addr = (*search)->rra + (*search)->rrb - (*search)->rrr;
-	if ((*search)->addr <= (*search)->count_move)
+	if ((*search)->addr <= (*search)->count_move && (*search)->addr != 0)
 		(*search)->count_move = (*search)->addr;
 }
 
@@ -45,13 +46,14 @@ void	main_algo(t_list **a)
 			count_order(&b);
 		else
 			count_order_a(a);
+		tmp = b;
 		while (b)
 		{
 			b = b->next;
 			write(1, "pa\n", 3);
 		}
 	}
-//	ft_testlst(a, &b);
+	ft_lstfree(&tmp);
 	return ;
 }
 

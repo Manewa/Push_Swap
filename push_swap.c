@@ -122,6 +122,5 @@ int	main(int argc, char **argv)
 		return (free(split), 0);
 	lstcreate(&a, split);
 	main_algo(&a);
-	ft_lstfree(&a);
 	return (0);
 }

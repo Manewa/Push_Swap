@@ -2,27 +2,22 @@
 
 void	move_rrr(t_list **head_a, t_list **head_b, t_list **pass)
 {
-	if ((*pass)->rr < (*pass)->rrr)
+	while ((*pass)->rr != 0)
 	{
-		while ((*pass)->rr != 0)
-		{
-			rr(head_a, head_b);
-			(*pass)->rr -= 1;
-			(*pass)->ra -= 1;
-			(*pass)->rb -= 1;
-		}
+		rr(head_a, head_b);
+		(*pass)->rr -= 1;
+		(*pass)->ra -= 1;
+		(*pass)->rb -= 1;
 	}
-	else if ((*pass)->rrr < (*pass)->rr)
+	while ((*pass)->rrr != 0)
 	{
-		while ((*pass)->rrr != 0)
-		{
-			rrr(head_a, head_b);
-			(*pass)->rra -= 1;
-			(*pass)->rrb -= 1;
-			(*pass)->rrr -= 1;
-		}
+		rrr(head_a, head_b);
+		(*pass)->rra -= 1;
+		(*pass)->rrb -= 1;
+		(*pass)->rrr -= 1;
 	}
 }
+
 
 long int	lowest_all(t_list **head_a, t_list **head_b)
 {
@@ -64,7 +59,6 @@ void	under_five(t_list **head_a, t_list **head_b)
 	}
 	while (head_b)
 		pa(head_a, head_b);
-//	opti_sorted(head_a);
 	return ;
 }
 

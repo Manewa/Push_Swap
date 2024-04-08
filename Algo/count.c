@@ -47,7 +47,26 @@ void	count_moves(t_list **head_a)
 	search = *head_a;
 	while (search)
 	{
+		search->count_move = 0;
 		if (search->rb <= search->rrb)
+			search->count_move = search->rb;
+		else
+			search->count_move = search->rrb;
+		if (search->ra <= search->rra)
+			search->count_move += search->ra;
+		else
+			search->count_move += search->rra;
+
+
+/*		if (search->rb <= search->rrb && search->ra <= search->rra)
+			search->count_move = search->rb + search->ra;
+		else if (search->rb < search->rrb && search->ra > search->rra)
+			search->count_move = search->rb + search->rra;
+		else if (search->rb >= search->rrb && search->ra <= search->rra)
+			search->count_move = search->rrb + search->ra;
+		else if (search->rb > search->rrb && search->ra > search->rra)
+			search->count_move = search->rrb + search->rra;
+*//*		if (search->rb <= search->rrb)
 		{
 			if (search->ra <= search->rra)
 				search->count_move = search->rb + search->ra;
@@ -56,11 +75,11 @@ void	count_moves(t_list **head_a)
 			}
 		else
 			{
-				if (search->ra < search->rra)
-					search->count_move = search->rrb + search->ra;
+				if (search->rra <= search->ra)
+					search->count_move = search->rrb + search->rra;
 				else
-					search->count_move = search->rrb + search->rra;	
-			}
+					search->count_move = search->rrb + search->ra;	
+			}*/
 		count_move_rrr(&search);
 		search = search->next;
 	}
