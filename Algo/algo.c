@@ -27,7 +27,7 @@ void	main_algo(t_list **a)
 {
 	t_list	*b;
 	t_list	*tmp;
-	
+
 	b = NULL;
 	if (sorted(a) == 1)
 		tmp = *a;
@@ -35,13 +35,6 @@ void	main_algo(t_list **a)
 	{
 		tmp = *a;
 		fill_b(a, &b);
-/*		if ((*a)->next && (*a)->next->next)
-			pass_to_a(a, &b);
-		else
-		{
-			a_to_lowest(a);
-			under_five(a, &b);
-		}*/
 		if (b && b->next && b->next->next)
 			count_order(&b);
 		else
@@ -57,36 +50,40 @@ void	main_algo(t_list **a)
 	return ;
 }
 
-void	fill_b(t_list **a, t_list **b)
+int	move_for_algo(t_list **a, t_list **b)
 {
-	t_list	*pass;
-	size_t	i;
-	int		highest;
-
-	i = 0;
 	if ((*a)->next && (*a)->next->next && (*a)->next->next->next
-			&& (*a)->next->next->next->next
-			&& (*a)->next->next->next->next->next)
+		&& (*a)->next->next->next->next
+		&& (*a)->next->next->next->next->next)
 	{
-		pb(b, a);
-		pb(b, a);
-		pb(b, a);
+		pb(b, a, 1);
+		pb(b, a, 1);
+		pb(b, a, 1);
 		sort_b_under_five(b);
 	}
 	else if ((*a)->next && (*a)->next->next && (*a)->next->next->next)
 	{
-		pb(b, a);
+		pb(b, a, 1);
 		if ((*a)->next->next->next)
-			pb(b, a);
+			pb(b, a, 1);
 		pass_to_a(a, b);
-		return ;
+		return (1);
 	}
 	else
 	{
 		sort_a_at_three(a);
-		return ;
+		return (1);
 	}
-//	while ((*a)->next && (*a)->next->next && (*a)->next->next->next)
+	return (0);
+}
+
+void	fill_b(t_list **a, t_list **b)
+{
+	t_list	*pass;
+	int		highest;
+
+	if (move_for_algo(a, b) == 1)
+		return ;
 	while (*a)
 	{
 		highest = find_highest(b);
@@ -97,12 +94,6 @@ void	fill_b(t_list **a, t_list **b)
 		if (pass->content > highest)
 			pass_to_highest(&pass, b);
 		pass_to_b(a, b, &pass);
-		//	Maintenant il faut :
-		// Renvoyer vers a en faisant attention a bien mettre les bons chiffres
-		// aux bons endroits par rapport aux 3 de a
-		// Implementer rr et rrr
 	}
-	
 	return ;
 }
-

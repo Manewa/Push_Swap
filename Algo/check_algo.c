@@ -57,7 +57,7 @@ t_list	*check_pos_a(t_list **search_a, t_list **head_b)
 	t_list	*search_b;
 
 	search_b = *head_b;
-	if ((*search_a)->content > search_b->content 
+	if ((*search_a)->content > search_b->content
 		&& (*search_a)->content < ft_lstlast(*head_b)->content)
 			(*search_a)->rb = 0;
 	else

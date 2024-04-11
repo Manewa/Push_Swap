@@ -39,25 +39,10 @@ void	lstcreate(t_list **a, long int *split)
 	return (free(split));
 }
 
-long int	*ft_parse(int argc, char **argv)
+long int	*ft_parse_add(char **split, char *str, long int *num)
 {
-	size_t		i;
-	char		*str;
-	long int	*num;
-	char		**split;
+	size_t	i;
 
-	i = 1;
-	str = "\0";
-	while (i < (size_t)argc)
-	{
-		str = ft_strjoin(str, argv[i], i);
-		if (!str)
-			exit (1);
-		i++;
-	}
-	split = ft_split(str, ' ');
-	if (!split)
-		return (free(str), NULL);
 	i = 0;
 	while (split[i])
 		i++;
@@ -75,36 +60,34 @@ long int	*ft_parse(int argc, char **argv)
 	return (ft_free(split, str, ' '), free(str), num);
 }
 
-void	ft_testlst(t_list **a, t_list **b)
+long int	*ft_parse(int argc, char **argv)
 {
-	t_list	*tmpa;
-	t_list	*tmpb;
+	size_t		i;
+	char		*str;
+	long int	*num;
+	char		**split;
 
-	tmpa = *a;
-	tmpb = *b;
-	if (*b == NULL)
-		*b = ft_lstnew(-1);
-	while ((*a)->next || (*b)->next)
+	i = 1;
+	str = "\0";
+	num = NULL;
+	while (i < (size_t)argc)
 	{
-		printf("%d		|		%d\n", (*a)->content, (*b)->content);
-		if ((*a)->next)
-			*a = (*a)->next;
-		if ((*b)->next)
-			*b = (*b)->next;
+		str = ft_strjoin(str, argv[i], i);
+		if (!str)
+			exit (1);
+		i++;
 	}
-	printf("%d		|		%d\n", (*a)->content, (*b)->content);
-	printf("A		|		B\n===========\n");
-	*a = tmpa;
-	*b = tmpb;
-//	ft_lstfree(b);
-	return ;
+	split = ft_split(str, ' ');
+	if (!split)
+		return (free(str), NULL);
+	num = ft_parse_add(split, str, num);
+	return (num);
 }
 
 int	main(int argc, char **argv)
 {
 	long int	*split;
 	t_list		*a;
-//	t_list		*tmp;
 
 	if (argc <= 1)
 		exit (1);

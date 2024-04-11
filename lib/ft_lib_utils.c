@@ -6,7 +6,7 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:48:41 by namalier          #+#    #+#             */
-/*   Updated: 2024/03/05 16:11:31 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:19:31 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,20 @@ void	ft_free(char **str, char const *s, char c)
 	return ;
 }
 
-/*void	ft_freeint(int *num)
+char	*ft_strdup(const char *s)
 {
-	int	i;
+	char	*str;
+	size_t	i;
 
-	i = num[0];
-	while (i >= 0)
+	str = malloc(ft_strlen(s) + 1 * sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		free (num[i]);
-		i--;
+		str[i] = s[i];
+		i++;
 	}
-	return ;
-}*/
+	str[i] = '\0';
+	return (str);
+}

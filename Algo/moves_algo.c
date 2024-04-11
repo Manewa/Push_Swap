@@ -6,7 +6,7 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:54:14 by namalier          #+#    #+#             */
-/*   Updated: 2024/03/25 12:54:17 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:31:49 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	position_b(t_list **head_b, t_list **pass)
 	return ;
 }
 
-
-
 void	pass_to_b(t_list **head_a, t_list **head_b, t_list **pass)
 {
 	if ((*pass)->addr == (*pass)->count_move)
@@ -57,44 +55,41 @@ void	pass_to_b(t_list **head_a, t_list **head_b, t_list **pass)
 			}
 		}
 	}
-	position_b(head_b, pass); 
-	pb (head_b, head_a);
+	position_b(head_b, pass);
+	pb (head_b, head_a, 1);
 	return ;
 }
-	
 
 void	pass_to_a(t_list **head_a, t_list **head_b)
 {
 	t_list	*tail;
-	int		lowest_a;
-	
+
 	sort_a_at_three(head_a);
-	lowest_a = (*head_a)->content;
 	if ((*head_b)->next && (*head_b)->content < (*head_b)->next->content)
 		sb(head_b, 1);
 	while (*head_b)
 	{
 		tail = ft_lstlast(*head_a);
 		while (*head_b && (*head_b)->content > tail->content)
-			pa(head_a, head_b);
+			pa(head_a, head_b, 1);
 		rra(head_a, 1);
 		tail = ft_lstlast(*head_a);
 		while (*head_b && (*head_b)->content < tail->content
-				&& tail->content < (*head_a)->content)
+			&& tail->content < (*head_a)->content)
 		{
 			rra(head_a, 1);
 			tail = ft_lstlast(*head_a);
 		}
 		while (*head_b && (*head_b)->content > tail->content)
-			pa(head_a, head_b);
+			pa(head_a, head_b, 1);
 		while (*head_b && (*head_b)->content < tail->content
-				&& tail->content < (*head_a)->content)
+			&& tail->content < (*head_a)->content)
 		{
 			rra(head_a, 1);
 			tail = ft_lstlast(*head_a);
 		}
 		while (*head_b)
-			pa (head_a, head_b);
+			pa (head_a, head_b, 1);
 	}
 }
 
@@ -120,8 +115,8 @@ void	move_to_max(t_list **head_a, int mra, int mrra)
 
 void	count_order(t_list **head_b)
 {
-	t_list *tmp_b;
-	int 	rb;
+	t_list	*tmp_b;
+	int		rb;
 	int		rrb;
 	int		highest;
 

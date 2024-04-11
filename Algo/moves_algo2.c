@@ -1,28 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_algo2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/11 19:03:01 by namalier          #+#    #+#             */
+/*   Updated: 2024/04/11 19:03:02 by namalier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 void	move_rrr(t_list **head_a, t_list **head_b, t_list **pass)
 {
 	while ((*pass)->rr != 0)
 	{
-		rr(head_a, head_b);
+		rr(head_a, head_b, 1);
 		(*pass)->rr -= 1;
 		(*pass)->ra -= 1;
 		(*pass)->rb -= 1;
 	}
 	while ((*pass)->rrr != 0)
 	{
-		rrr(head_a, head_b);
+		rrr(head_a, head_b, 1);
 		(*pass)->rra -= 1;
 		(*pass)->rrb -= 1;
 		(*pass)->rrr -= 1;
 	}
 }
 
-
 long int	lowest_all(t_list **head_a, t_list **head_b)
 {
 	int	lowesta;
-	int lowestb;
+	int	lowestb;
 
 	lowesta = find_lowest(head_a);
 	lowestb = find_lowest(head_b);
@@ -34,7 +45,7 @@ long int	lowest_all(t_list **head_a, t_list **head_b)
 long int	highest_all(t_list **head_a, t_list **head_b)
 {
 	int	highesta;
-	int highestb;
+	int	highestb;
 
 	highesta = find_highest(head_a);
 	highestb = find_highest(head_b);
@@ -45,46 +56,45 @@ long int	highest_all(t_list **head_a, t_list **head_b)
 
 void	under_five(t_list **head_a, t_list **head_b)
 {
-	t_list *tail;
-
+	t_list	*tail;
 
 	sort_b_under_five(head_b);
 	while (head_b && (*head_b)->content > find_lowest(head_a))
 	{
 		tail = ft_lstlast(*head_a);
 		while (*head_b && (*head_b)->content > tail->content)
-			pa(head_a, head_b);
+			pa(head_a, head_b, 1);
 		if ((*head_b)->content < tail->content)
 			rra(head_a, 1);
 	}
 	while (head_b)
-		pa(head_a, head_b);
+		pa(head_a, head_b, 1);
 	return ;
 }
 
 void	sort_b_under_five(t_list **head_b)
 {
 	if ((*head_b)->content == find_lowest(head_b)
-			&& (*head_b)->next->content > (*head_b)->next->next->content)
+		&& (*head_b)->next->content > (*head_b)->next->next->content)
 		rb (head_b, 1);
 	else if ((*head_b)->content == find_lowest(head_b)
-				&& (*head_b)->next->content < (*head_b)->next->next->content)
+		&& (*head_b)->next->content < (*head_b)->next->next->content)
 	{
 		sb(head_b, 1);
 		rrb(head_b, 1);
 	}
 	else if ((*head_b)->next->content == find_lowest(head_b)
-			&& (*head_b)->content > (*head_b)->next->next->content)
+		&& (*head_b)->content > (*head_b)->next->next->content)
 	{
 		sb(head_b, 1);
 		rb(head_b, 1);
 	}
 	else if ((*head_b)->next->content == find_lowest(head_b)
-			&& (*head_b)->content < (*head_b)->next->next->content)
+		&& (*head_b)->content < (*head_b)->next->next->content)
 		rrb(head_b, 1);
 	else if ((*head_b)->next->next->content == find_lowest(head_b)
-			&& (*head_b)->content < (*head_b)->next->content)
-			sb(head_b, 1);
+		&& (*head_b)->content < (*head_b)->next->content)
+		sb(head_b, 1);
 	return ;
 }
 

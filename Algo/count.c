@@ -6,7 +6,7 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:54:26 by namalier          #+#    #+#             */
-/*   Updated: 2024/03/25 12:54:27 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:13:41 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ void	count_a(t_list **head)
 	}
 }
 
-
 void	count_moves(t_list **head_a)
 {
 	t_list	*search;
-	
+
 	search = *head_a;
 	while (search)
 	{
@@ -56,30 +55,6 @@ void	count_moves(t_list **head_a)
 			search->count_move += search->ra;
 		else
 			search->count_move += search->rra;
-
-
-/*		if (search->rb <= search->rrb && search->ra <= search->rra)
-			search->count_move = search->rb + search->ra;
-		else if (search->rb < search->rrb && search->ra > search->rra)
-			search->count_move = search->rb + search->rra;
-		else if (search->rb >= search->rrb && search->ra <= search->rra)
-			search->count_move = search->rrb + search->ra;
-		else if (search->rb > search->rrb && search->ra > search->rra)
-			search->count_move = search->rrb + search->rra;
-*//*		if (search->rb <= search->rrb)
-		{
-			if (search->ra <= search->rra)
-				search->count_move = search->rb + search->ra;
-			else
-				search->count_move = search->rb + search->rra;
-			}
-		else
-			{
-				if (search->rra <= search->ra)
-					search->count_move = search->rrb + search->rra;
-				else
-					search->count_move = search->rrb + search->ra;	
-			}*/
 		count_move_rrr(&search);
 		search = search->next;
 	}
@@ -97,7 +72,7 @@ void	count_b(t_list **head_a, t_list **head_b)
 		search_a->rb = 0;
 		search_a->rrb = 0;
 		if (search_a->content > find_highest(head_b)
-				|| search_a->content < find_lowest(head_b))
+			|| search_a->content < find_lowest(head_b))
 			search_b = check_highest_lowest(&search_a, head_b);
 		else
 			search_b = check_pos_a(&search_a, head_b);
@@ -131,19 +106,12 @@ void	count_rrr(t_list **search)
 	int		countra;
 	int		countrb;
 
+	countra = 0;
+	countrb = 0;
 	(*search)->rr = 0;
 	(*search)->rrr = 0;
 	if ((*search)->ra <= (*search)->rra && (*search)->rb <= (*search)->rrb)
-	{
-		countra = (*search)->ra;
-		countrb = (*search)->rb;
-		while (countra != 0 && countrb != 0)
-		{
-			countra -= 1;
-			countrb -= 1;
-			(*search)->rr += 1;
-		}
-	}
+		count_r(search, countra, countrb);
 	else if ((*search)->rra <= (*search)->ra && (*search)->rrb <= (*search)->rb)
 	{
 		countra = (*search)->rra;
@@ -156,4 +124,3 @@ void	count_rrr(t_list **search)
 		}
 	}
 }
-

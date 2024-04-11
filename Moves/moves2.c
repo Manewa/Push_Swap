@@ -34,11 +34,12 @@ void	rra(t_list **n, int yn)
 	return ;
 }
 
-void	rrr(t_list **a, t_list **b)
+void	rrr(t_list **a, t_list **b, int yn)
 {
 	rra(a, 0);
 	rrb(b, 0);
-	write (1, "rrr\n", 4);
+	if (yn == 1)
+		write (1, "rrr\n", 4);
 	return ;
 }
 
@@ -54,7 +55,7 @@ void	sb(t_list **n, int yn)
 	return ;
 }
 
-void	pb(t_list **top, t_list **del)
+void	pb(t_list **top, t_list **del, int yn)
 {
 	t_list	*swap;
 
@@ -63,7 +64,8 @@ void	pb(t_list **top, t_list **del)
 	swap = *del;
 	*del = (*del)->next;
 	ft_lstadd_front(top, swap);
-	write (1, "pb\n ", 3);
+	if (yn == 1)
+		write (1, "pb\n ", 3);
 	return ;
 }
 

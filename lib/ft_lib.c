@@ -6,11 +6,27 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:09:19 by namalier          #+#    #+#             */
-/*   Updated: 2024/03/05 15:55:27 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:40:59 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+long int	ft_atoi2(const char *str, int i, int j, int sign)
+{
+	long int	num;
+
+	num = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		if ((i - j == 10 && ((str[i] >= '8' && sign > 0) || (str[i] >= '9'
+						&& sign < 0))) || i - j >= 11)
+			return (21474834888);
+		num = num * 10 + str[i] - 48;
+		i++;
+	}
+	return (num);
+}
 
 long int	ft_atoi(const char *str)
 {
@@ -21,7 +37,6 @@ long int	ft_atoi(const char *str)
 
 	i = 0;
 	sign = 1;
-	num = 0;
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
@@ -33,14 +48,7 @@ long int	ft_atoi(const char *str)
 	while (str[i] == '0')
 		i++;
 	j = i;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		if ((i - j == 10 && ((str[i] >= '8' && sign > 0) || (str[i] >= '9'
-						&& sign < 0))) || i - j >= 11)
-			return (21474834888);
-		num = num * 10 + str[i] - 48;
-		i++;
-	}
+	num = ft_atoi2(str, i, j, sign);
 	return (num * sign);
 }
 

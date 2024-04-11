@@ -24,15 +24,16 @@ void	sa(t_list **n, int yn)
 	return ;
 }
 
-void	ss(t_list **a, t_list **b)
+void	ss(t_list **a, t_list **b, int yn)
 {
 	sa(a, 0);
 	sb(b, 0);
-	write (1, "ss\n", 3);
+	if (yn == 1)
+		write (1, "ss\n", 3);
 	return ;
 }
 
-void	pa(t_list **top, t_list **del)
+void	pa(t_list **top, t_list **del, int yn)
 {
 	t_list	*swap;
 
@@ -41,7 +42,8 @@ void	pa(t_list **top, t_list **del)
 	swap = *del;
 	*del = (*del)->next;
 	ft_lstadd_front(top, swap);
-	write (1, "pa\n", 3);
+	if (yn == 1)
+		write (1, "pa\n", 3);
 	return ;
 }
 
@@ -58,10 +60,11 @@ void	ra(t_list **n, int yn)
 	return ;
 }
 
-void	rr(t_list **a, t_list **b)
+void	rr(t_list **a, t_list **b, int yn)
 {
 	ra(a, 0);
 	rb(b, 0);
-	write (1, "rr\n", 3);
+	if (yn == 1)
+		write (1, "rr\n", 3);
 	return ;
 }
