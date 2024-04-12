@@ -23,74 +23,74 @@ char	*join_move(void)
 		buffer = get_next_line(0);
 		if (!buffer)
 			return (str);
-		str = ft_strjoin(str, buffer, 0);
+		str = ft_strjoin_bonus(str, buffer);
+		free (buffer);
 		if (!str)
 		{
 			free(str);
-			ft_exit();
+			return (NULL);
 		}
 	}
 }
 
-int	moves_algo(t_list **head_a, t_list **head_b, char *moves)
+int	moves_algo(t_list **head_a, t_list **head_b, char *m)
 {
-	if (moves == "sa\n")
+	if (m[0] == 's' && m[1] == 'a' && m[2] == '\0')
 		sa (head_a, 0);
-	else if (moves == "sb\n")
+	else if (m[0] == 's' && m[1] == 'b' && m[2] == '\0')
 		sb (head_b, 0);
-	else if (moves == "ss\n")
+	else if (m[0] == 's' && m[1] == 's' && m[2] == '\0')
 		ss(head_a, head_b, 0);
-	else if (moves == "pa\n")
+	else if (m[0] == 'p' && m[1] == 'a' && m[2] == '\0')
 		pa (head_a, head_b, 0);
-	else if (moves == "pb\n")
+	else if (m[0] == 'p' && m[1] == 'b' && m[2] == '\0')
 		pb (head_b, head_a, 0);
-	else if (moves == "ra\n")
+	else if (m[0] == 'r' && m[1] == 'a' && m[2] == '\0')
 		ra (head_a, 0);
-	else if (moves == "rb\n")
+	else if (m[0] == 'r' && m[1] == 'b' && m[2] == '\0')
 		rb (head_b, 0);
-	else if (moves == "rr\n")
+	else if (m[0] == 'r' && m[1] == 'r' && m[2] == '\0')
 		rr (head_a, head_b, 0);
-	else if (moves == "rra\n")
+	else if (m[0] == 'r' && m[1] == 'r' && m[2] == 'a' && m[3] == '\0')
 		rra (head_a, 0);
-	else if (moves == "rrb\n")
+	else if (m[0] == 'r' && m[1] == 'r' && m[2] == 'b' && m[3] == '\0')
 		rrb (head_b, 0);
-	else if (moves == "rrr\n")
+	else if (m[0] == 'r' && m[1] == 'r' && m[2] == 'r' && m[3] == '\0')
 		rrr (head_a, head_b, 0);
 	else
 		return (0);
 	return (1);
 }
 
-int	checker_algo(t_list **head_a, t_list **head_b, char **moves)
+int	checker_algo(t_list **head_a, t_list **head_b, char **moves, char *move)
 {
 	size_t	i;
 	t_list	*tmpa;
 
 	i = 0;
-	tmpa = *head_a;
 	while (moves[i])
 	{
 		if (moves_algo(head_a, head_b, moves[i]) == 1)
 			i++;
-		else
+		else if (moves[i][1] != '\0')
 		{
 			ft_lstfree(head_a);
 			ft_lstfree(head_b);
-			free(moves);
+			ft_free(moves, move, '\n');
+			free(move);
 			ft_exit();
 		}
 	}
+	tmpa = *head_a;
 	while (tmpa && tmpa->next && tmpa->content < tmpa->next->content)
-	{
 		tmpa = tmpa->next;
-	}
-	if (!(tmpa->next))
+	if (!(tmpa->next) && !(head_b))
 		return (1);
 	else
 		return (0);
 }
 
-int	checker(char **moves, int *split)
+int	checker(char **moves, char *move, long int *split)
 {
 	t_list	*a;
 	t_list	*b;
@@ -100,51 +100,46 @@ int	checker(char **moves, int *split)
 	if (!a)
 	{
 		free(split);
-		ft_free(moves);
+		ft_free(moves, move, '\n');
 		ft_exit();
 	}
-	lstcreate(&a, split);
-	if (checker_algo(&a, &b, moves) == 1)
+	lstcreate_bonus(&a, split);
+	if (checker_algo(&a, &b, moves, move) == 1)
 	{
 		ft_lstfree(&a);
-		free(moves);
+		ft_free(moves, move, '\n');
 		return (1);
 	}
 	else
 	{
 		ft_lstfree(&a);
 		ft_lstfree(&b);
-		free(moves);
+		ft_free(moves, move, '\n');
 		return (0);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	char	*move;
-	char	**moves;
-	int		*split;
+	char		*move;
+	char		**moves;
+	long int	*split;
 
-	if (ac < 2)
+	if (argc < 2)
 		ft_exit();
 	ft_check_errors(argv);
-	move = join_move();
-	moves = ft_split(move, ' ');
-	split = ft_parse(argc, argv);
-	if (!moves || split == NULL)
+	split = ft_parse_bonus(argc, argv);
+	if (split == NULL)
+		ft_exit();
+	if (parsing_bonus(&move, &moves, split) == 1)
 	{
-		free(moves);
+		free (split);
 		ft_exit();
 	}
-	if (ft_check_double(split) == 1)
-	{
-		free(moves);
-		ft_free(split, move, ' ');
-		ft_exit();
-	}
-	if (checker(moves, split) == 1)
+	if (checker(moves, move, split) == 1)
 		write (1, "OK\n", 3);
 	else
 		write (1, "KO\n", 3);
+	free(move);
 	return (0);
 }

@@ -18,13 +18,18 @@ SRCS		= Moves/moves1.c lib/ft_lib.c lib/ft_lib_utils.c lib/ft_lst.c \
 
 SRCS_BONUS	= Moves/moves1.c Moves/moves2.c Moves/moves3.c lib/ft_lib.c \
 			  lib/ft_lib_utils.c lib/ft_lst.c ft_error.c Bonus/checker.c \
-			  
+			  Bonus/checker_bonus.c Bonus/GNL/get_next_line.c \
+			  Bonus/GNL/get_next_line_utils.c
 
 HEADER		= push_swap.h
 
 OBJS		= ${SRCS:.c=.o}
 
+OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
+
 NAME		= push_swap
+
+NAME_BONUS	= checker
 
 CFLAGS		= -Wall -Werror -Wextra
 
@@ -37,11 +42,14 @@ ${NAME}		:    ${OBJS}
 all			:		${NAME}
 
 clean		:
-			rm -f ${OBJS}
+			rm -f ${OBJS} ${OBJS_BONUS}
 
 fclean		:		clean
-			rm -f ${NAME}
+			rm -f ${NAME} ${NAME_BONUS}
 
 re			: fclean all
 
-.PHONY		: all clean fclean re
+checker		:	${OBJS_BONUS}
+			cc ${OBJS_BONUS} -o ${NAME_BONUS} -g
+
+.PHONY		: all clean fclean re checker

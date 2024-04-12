@@ -65,7 +65,7 @@ void	pb(t_list **top, t_list **del, int yn)
 	*del = (*del)->next;
 	ft_lstadd_front(top, swap);
 	if (yn == 1)
-		write (1, "pb\n ", 3);
+		write (1, "pb\n", 3);
 	return ;
 }
 

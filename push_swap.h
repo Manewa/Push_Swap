@@ -18,6 +18,10 @@
 # include<stdio.h>
 # include<unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
 typedef struct s_list
 {
 	int				content;
@@ -147,8 +151,29 @@ void		sort_a_at_three(t_list **head_a);
 /********			checker					******/
 
 char		*join_move(void);
-int			checker(char **moves, int *split);
+int			moves_algo(t_list **head_a, t_list **head_b, char *m);
+int			checker_algo(t_list **a, t_list **b, char **moves, char *move);
+int			checker(char **moves, char *move, long int *split);
 int			main(int argc, char **argv);
+
+/********			checker_bonus		*******/
+
+int			parsing_bonus(char **move, char ***moves, long int *split);
+void		lstcreate_bonus(t_list **a, long int *split);
+long int	*ft_parse_add_bonus(char **split, char *str, long int *num);
+long int	*ft_parse_bonus(int argc, char **argv);
+char		*ft_strjoin_bonus(char *s1, char const *s2);
+
+/*********			GNL						*******/
+
+char		*ft_gnldup(char *src);
+char		*ft_gnlchr(char *str, int to_find);
+char		*ft_gnljoin(char *s1, char *s2);
+int			ft_gnllen(char *str);
+int			ft_checkline(char *line);
+void		ft_gnlmove(char *buf, char *line, size_t stop);
+char		*ft_movenewline(char *line, char *buf, ssize_t nread, int fd);
+char		*get_next_line(int fd);
 
 /********************TESTS A SUPPRIMER************/
 

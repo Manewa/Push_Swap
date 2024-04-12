@@ -91,8 +91,8 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while ((int)j < ft_count_word(s, c))
 	{
-		while (s[i] == c)
-			i++;
+		if (s[i] == c)
+			return (ft_free(str, s, c), NULL);
 		str[j] = ft_cpy_str(str[j], s, &i, c);
 		if (!str[j])
 			return (ft_free(str, s, c), NULL);

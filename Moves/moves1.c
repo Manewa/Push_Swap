@@ -37,7 +37,7 @@ void	pa(t_list **top, t_list **del, int yn)
 {
 	t_list	*swap;
 
-	if (!(*del)->content)
+	if (!(*del))
 		return ;
 	swap = *del;
 	*del = (*del)->next;
