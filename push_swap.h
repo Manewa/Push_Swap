@@ -139,6 +139,7 @@ void		sort_b_under_five(t_list **head_b);
 
 void		count_order_a(t_list **head_a);
 void		move_to_min(t_list **head_a, int mra, int mrra);
+void		move_to_a(t_list **head_a, t_list **head_b, t_list *tail);
 
 /********			move_top_bot			******/
 

@@ -84,7 +84,7 @@ int	checker_algo(t_list **head_a, t_list **head_b, char **moves, char *move)
 	tmpa = *head_a;
 	while (tmpa && tmpa->next && tmpa->content < tmpa->next->content)
 		tmpa = tmpa->next;
-	if (!(tmpa->next) && !(head_b))
+	if (!(tmpa->next) && !(*head_b))
 		return (1);
 	else
 		return (0);

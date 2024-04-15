@@ -67,30 +67,8 @@ void	pass_to_a(t_list **head_a, t_list **head_b)
 	sort_a_at_three(head_a);
 	if ((*head_b)->next && (*head_b)->content < (*head_b)->next->content)
 		sb(head_b, 1);
-	while (*head_b)
-	{
-		tail = ft_lstlast(*head_a);
-		while (*head_b && (*head_b)->content > tail->content)
-			pa(head_a, head_b, 1);
-		rra(head_a, 1);
-		tail = ft_lstlast(*head_a);
-		while (*head_b && (*head_b)->content < tail->content
-			&& tail->content < (*head_a)->content)
-		{
-			rra(head_a, 1);
-			tail = ft_lstlast(*head_a);
-		}
-		while (*head_b && (*head_b)->content > tail->content)
-			pa(head_a, head_b, 1);
-		while (*head_b && (*head_b)->content < tail->content
-			&& tail->content < (*head_a)->content)
-		{
-			rra(head_a, 1);
-			tail = ft_lstlast(*head_a);
-		}
-		while (*head_b)
-			pa (head_a, head_b, 1);
-	}
+	tail = NULL;
+	move_to_a(head_a, head_b, tail);
 }
 
 void	move_to_max(t_list **head_a, int mra, int mrra)

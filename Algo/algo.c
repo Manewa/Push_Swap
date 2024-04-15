@@ -47,6 +47,8 @@ void	main_algo(t_list **a)
 		}
 	}
 	ft_lstfree(&tmp);
+	if (*a)
+		ft_lstfree(a);
 	return ;
 }
 
