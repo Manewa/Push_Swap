@@ -17,8 +17,10 @@ void	rrb(t_list **n, int yn)
 	t_list	*swap;
 	t_list	*tmp;
 
+	if (!(*n) || !((*n)->next))
+		return ;
 	swap = (*n);
-	if ((*n)->next->next == NULL)
+	if (!(*n)->next->next)
 		sb(n, 0);
 	else
 	{

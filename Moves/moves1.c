@@ -16,6 +16,8 @@ void	sa(t_list **n, int yn)
 {
 	int	swap;
 
+	if (!(*n) || !((*n)->next))
+		return ;
 	swap = (*n)->content;
 	(*n)->content = (*n)->next->content;
 	(*n)->next->content = swap;
@@ -51,6 +53,8 @@ void	ra(t_list **n, int yn)
 {
 	t_list	*swap;
 
+	if (!(*n) || !((*n)->next))
+		return ;
 	swap = (*n);
 	*n = (*n)->next;
 	swap->next = NULL;

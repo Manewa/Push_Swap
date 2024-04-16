@@ -17,6 +17,12 @@ int	sorted(t_list **a)
 	t_list	*move;
 
 	move = *a;
+	if (*a && (*a)->next && (!(*a)->next->next)
+		&& (*a)->content > (*a)->next->content)
+	{
+		sa(a, 1);
+		return (1);
+	}
 	while (move->next)
 	{
 		if (move->content > move->next->content)

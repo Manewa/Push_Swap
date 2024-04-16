@@ -14,6 +14,11 @@
 
 int	parsing_bonus(char **move, char ***moves, long int *split)
 {
+	if (ft_check_double(split) == 1)
+	{
+		free(split);
+		ft_exit();
+	}
 	*move = join_move();
 	if (*move == NULL)
 		return (1);
@@ -21,12 +26,6 @@ int	parsing_bonus(char **move, char ***moves, long int *split)
 	if (!(*moves))
 	{
 		free(*move);
-		ft_exit();
-	}
-	if (ft_check_double(split) == 1)
-	{
-		ft_free(*moves, *move, '\n');
-		free(split);
 		ft_exit();
 	}
 	return (0);

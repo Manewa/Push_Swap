@@ -30,7 +30,7 @@ void	main_algo(t_list **a)
 
 	b = NULL;
 	if (sorted(a) == 1)
-		tmp = *a;
+		return (ft_lstfree(a));
 	else
 	{
 		tmp = *a;
@@ -49,7 +49,6 @@ void	main_algo(t_list **a)
 	ft_lstfree(&tmp);
 	if (*a)
 		ft_lstfree(a);
-	return ;
 }
 
 int	move_for_algo(t_list **a, t_list **b)
