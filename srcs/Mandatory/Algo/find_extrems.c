@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_algo.c                                       :+:      :+:    :+:   */
+/*   moves_algo3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 12:54:36 by namalier          #+#    #+#             */
-/*   Updated: 2024/03/25 12:54:37 by namalier         ###   ########.fr       */
+/*   Created: 2024/04/11 19:02:43 by namalier          #+#    #+#             */
+/*   Updated: 2024/04/11 19:02:45 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-int	sorted(t_list **a)
+/*long int	lowest_all(t_list **head_a, t_list **head_b)
 {
-	t_list	*move;
+	int	lowesta;
+	int	lowestb;
 
-	move = *a;
-	if (*a && (*a)->next && (!(*a)->next->next)
-		&& (*a)->content > (*a)->next->content)
-	{
-		sa(a, 1);
-		return (1);
-	}
-	while (move->next)
-	{
-		if (move->content > move->next->content)
-			return (0);
-		move = move->next;
-	}
-	return (1);
+	lowesta = find_lowest(head_a);
+	lowestb = find_lowest(head_b);
+	if (lowesta < lowestb)
+		return (lowesta);
+	return (-2147483649);
 }
+
+long int	highest_all(t_list **head_a, t_list **head_b)
+{
+	int	highesta;
+	int	highestb;
+
+	highesta = find_highest(head_a);
+	highestb = find_highest(head_b);
+	if (highesta < highestb)
+		return (highestb);
+	return (-2147483649);
+}*/
 
 t_list	*check_highest_lowest(t_list **search_a, t_list **head_b)
 {
@@ -58,24 +62,34 @@ t_list	*check_highest_lowest(t_list **search_a, t_list **head_b)
 	return (search_b);
 }
 
-t_list	*check_pos_a(t_list **search_a, t_list **head_b)
+int	find_highest(t_list **head_b)
 {
-	t_list	*search_b;
+	int		highest;
+	t_list	*tmpb;
 
-	search_b = *head_b;
-	if ((*search_a)->content > search_b->content
-		&& (*search_a)->content < ft_lstlast(*head_b)->content)
-			(*search_a)->rb = 0;
-	else
+	tmpb = *head_b;
+	highest = tmpb->content;
+	while (tmpb->next)
 	{
-		while (!((*search_a)->content < search_b->content
-				&& (*search_a)->content > search_b->next->content))
-		{
-			(*search_a)->rb += 1;
-			search_b = search_b->next;
-		}
-		(*search_a)->rb += 1;
-		search_b = search_b->next;
+		tmpb = tmpb->next;
+		if (highest < tmpb->content)
+			highest = tmpb->content;
 	}
-	return (search_b);
+	return (highest);
+}
+
+int	find_lowest(t_list **head_b)
+{
+	int		lowest;
+	t_list	*tmpb;
+
+	tmpb = *head_b;
+	lowest = tmpb->content;
+	while (tmpb->next)
+	{
+		tmpb = tmpb->next;
+		if (lowest > tmpb->content)
+			lowest = tmpb->content;
+	}
+	return (lowest);
 }

@@ -12,33 +12,6 @@
 
 #include "push_swap.h"
 
-void	lstcreate(t_list **a, long int *split)
-{
-	int	i;
-
-	i = 1;
-	while (split[0] >= i)
-	{
-		if (i == 1)
-		{
-			(*a)->content = split[1];
-			i++;
-		}
-		else
-		{
-			if ((ft_lstadd_back(a, ft_lstnew(split[i]))) == 0)
-				i++;
-			else
-			{
-				ft_lstfree(a);
-				free(split);
-				exit (1);
-			}
-		}
-	}
-	return (free(split));
-}
-
 long int	*ft_parse_add(char **split, char *str, long int *num)
 {
 	size_t	i;
@@ -82,6 +55,33 @@ long int	*ft_parse(int argc, char **argv)
 		return (free(str), NULL);
 	num = ft_parse_add(split, str, num);
 	return (num);
+}
+
+void	lstcreate(t_list **a, long int *split)
+{
+	int	i;
+
+	i = 1;
+	while (split[0] >= i)
+	{
+		if (i == 1)
+		{
+			(*a)->content = split[1];
+			i++;
+		}
+		else
+		{
+			if ((ft_lstadd_back(a, ft_lstnew(split[i]))) == 0)
+				i++;
+			else
+			{
+				ft_lstfree(a);
+				free(split);
+				exit (1);
+			}
+		}
+	}
+	return (free(split));
 }
 
 int	main(int argc, char **argv)

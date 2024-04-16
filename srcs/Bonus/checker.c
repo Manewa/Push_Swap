@@ -12,26 +12,7 @@
 
 #include "../push_swap.h"
 
-char	*join_move(void)
-{
-	char	*buffer;
-	char	*str;
 
-	str = ft_strdup("\0");
-	while (1)
-	{
-		buffer = get_next_line(0);
-		if (!buffer)
-			return (str);
-		str = ft_strjoin_bonus(str, buffer);
-		free (buffer);
-		if (!str)
-		{
-			free(str);
-			return (NULL);
-		}
-	}
-}
 
 int	moves_algo(t_list **head_a, t_list **head_b, char *m)
 {
@@ -72,7 +53,7 @@ int	checker_algo(t_list **head_a, t_list **head_b, char **moves, char *move)
 	{
 		if (moves_algo(head_a, head_b, moves[i]) == 1)
 			i++;
-		else if (moves[i][1] != '\0')
+		else
 		{
 			ft_lstfree(head_a);
 			ft_lstfree(head_b);
@@ -88,6 +69,33 @@ int	checker_algo(t_list **head_a, t_list **head_b, char **moves, char *move)
 		return (1);
 	else
 		return (0);
+}
+
+void	lstcreate_bonus(t_list **a, long int *split)
+{
+	int	i;
+
+	i = 1;
+	while (split[0] >= i)
+	{
+		if (i == 1)
+		{
+			(*a)->content = split[1];
+			i++;
+		}
+		else
+		{
+			if ((ft_lstadd_back(a, ft_lstnew(split[i]))) == 0)
+				i++;
+			else
+			{
+				ft_lstfree(a);
+				free(split);
+				exit (1);
+			}
+		}
+	}
+	return (free(split));
 }
 
 int	checker(char **moves, char *move, long int *split)

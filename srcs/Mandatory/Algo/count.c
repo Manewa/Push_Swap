@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	count_a(t_list **head)
 {
@@ -36,27 +36,6 @@ void	count_a(t_list **head)
 			search->rra = search->rra + 1;
 			tmp = tmp->next;
 		}
-	}
-}
-
-void	count_moves(t_list **head_a)
-{
-	t_list	*search;
-
-	search = *head_a;
-	while (search)
-	{
-		search->count_move = 0;
-		if (search->rb <= search->rrb)
-			search->count_move = search->rb;
-		else
-			search->count_move = search->rrb;
-		if (search->ra <= search->rra)
-			search->count_move += search->ra;
-		else
-			search->count_move += search->rra;
-		count_move_rrr(&search);
-		search = search->next;
 	}
 }
 
@@ -86,6 +65,28 @@ void	count_b(t_list **head_a, t_list **head_b)
 	}
 }
 
+void	count_moves(t_list **head_a)
+{
+	t_list	*search;
+
+	search = *head_a;
+	while (search)
+	{
+		search->count_move = 0;
+		if (search->rb <= search->rrb)
+			search->count_move = search->rb;
+		else
+			search->count_move = search->rrb;
+		if (search->ra <= search->rra)
+			search->count_move += search->ra;
+		else
+			search->count_move += search->rra;
+		count_move_rrr(&search);
+		search = search->next;
+	}
+}
+
+
 void	find_pass(t_list **head_a, t_list **pass)
 {
 	t_list	*tmp;
@@ -101,26 +102,3 @@ void	find_pass(t_list **head_a, t_list **pass)
 	return ;
 }
 
-void	count_rrr(t_list **search)
-{
-	int		countra;
-	int		countrb;
-
-	countra = 0;
-	countrb = 0;
-	(*search)->rr = 0;
-	(*search)->rrr = 0;
-	if ((*search)->ra <= (*search)->rra && (*search)->rb <= (*search)->rrb)
-		count_r(search, countra, countrb);
-	else if ((*search)->rra <= (*search)->ra && (*search)->rrb <= (*search)->rb)
-	{
-		countra = (*search)->rra;
-		countrb = (*search)->rrb;
-		while (countra != 0 && countrb != 0)
-		{
-			countra -= 1;
-			countrb -= 1;
-			(*search)->rrr += 1;
-		}
-	}
-}

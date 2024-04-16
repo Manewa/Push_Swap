@@ -10,16 +10,20 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= Moves/moves1.c lib/ft_lib.c lib/ft_lib_utils.c lib/ft_lst.c \
-			Moves/moves2.c Moves/moves3.c push_swap.c ft_error.c Algo/algo.c \
-			Algo/check_algo.c Algo/count.c Algo/moves_algo.c \
-			Algo/move_top_bot.c Algo/moves_algo2.c Algo/moves_algo3.c \
-			Algo/count2.c \
+SRCS		= srcs/Mandatory/Moves/moves1.c Mandatory/lib/ft_lib.c \
+			Mandatory/lib/ft_lib_utils.c Mandatory/lib/ft_lst.c \
+			Mandatory/Moves/moves2.c Mandatory/Moves/moves3.c \
+			Mandatory/push_swap.c Mandatory/ft_error.c Algo/algo.c \
+			Mandatory/Algo/check_algo.c Mandatory/Algo/count.c \
+			Mandatory/Algo/moves_algo.c Mandatory/Algo/move_top_bot.c \
+			Mandatory/Algo/moves_algo2.c Mandatory/Algo/moves_algo3.c \
+			Mandatory/Algo/count2.c \
 
-SRCS_BONUS	= Moves/moves1.c Moves/moves2.c Moves/moves3.c lib/ft_lib.c \
-			  lib/ft_lib_utils.c lib/ft_lst.c ft_error.c Bonus/checker.c \
-			  Bonus/checker_bonus.c Bonus/GNL/get_next_line.c \
-			  Bonus/GNL/get_next_line_utils.c
+SRCS_BONUS	= Mandatory/Moves/moves1.c Mandatory/Moves/moves2.c \
+			  Mandatory/Moves/moves3.c Mandatory/lib/ft_lib.c \
+			  Mandatory/lib/ft_lib_utils.c Mandatory/lib/ft_lst.c \
+			  Mandatory/ft_error.c Bonus/checker.c Bonus/parsing_bonus.c \
+			  Bonus/GNL/get_next_line.c Bonus/GNL/get_next_line_utils.c \
 
 HEADER		= push_swap.h
 
@@ -31,7 +35,7 @@ NAME		= push_swap
 
 NAME_BONUS	= checker
 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -I include
 
 .c.o		:
 			cc ${CFLAGS} -c $< -o ${<:.c=.o} -g
