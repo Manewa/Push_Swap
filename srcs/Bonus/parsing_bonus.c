@@ -1,4 +1,16 @@
-#include "../push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/19 16:55:04 by namalier          #+#    #+#             */
+/*   Updated: 2024/04/19 16:55:22 by namalier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 
 char	*ft_strjoin_bonus(char *s1, char const *s2)
 {
@@ -108,4 +120,3 @@ long int	*ft_parse_bonus(int argc, char **argv)
 	num = ft_parse_add_bonus(split, str, num);
 	return (num);
 }
-

@@ -6,7 +6,7 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:54:26 by namalier          #+#    #+#             */
-/*   Updated: 2024/04/11 19:13:41 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:52:43 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	count_moves(t_list **head_a)
 	}
 }
 
-
 void	find_pass(t_list **head_a, t_list **pass)
 {
 	t_list	*tmp;
@@ -101,4 +100,3 @@ void	find_pass(t_list **head_a, t_list **pass)
 	}
 	return ;
 }
-

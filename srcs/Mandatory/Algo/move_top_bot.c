@@ -6,11 +6,11 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 19:32:31 by namalier          #+#    #+#             */
-/*   Updated: 2024/04/11 19:33:49 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:51:33 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	move_to_max(t_list **head_a, int mra, int mrra)
 {
@@ -53,25 +53,6 @@ void	pass_to_highest(t_list **pass, t_list **b)
 	}
 	return ;
 }
-
-
-/*void	a_to_lowest(t_list **head)
-{
-	int	lowest;
-	int	i;
-
-	i = 0;
-	lowest = find_lowest(head);
-	while ((*head)->next && (*head)->content != lowest)
-		rra(head, 1);
-	if ((*head)->next && (*head)->next->next
-		&& (*head)->next->content > (*head)->next->next->content)
-	{
-		sa(head, 1);
-		ra(head, 1);
-	}
-	return ;
-}*/
 
 void	move_to_min(t_list **head_a, int mra, int mrra)
 {

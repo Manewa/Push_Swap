@@ -1,40 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_algo3.c                                      :+:      :+:    :+:   */
+/*   find_extrems.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 19:02:43 by namalier          #+#    #+#             */
-/*   Updated: 2024/04/11 19:02:45 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:53:13 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*long int	lowest_all(t_list **head_a, t_list **head_b)
-{
-	int	lowesta;
-	int	lowestb;
-
-	lowesta = find_lowest(head_a);
-	lowestb = find_lowest(head_b);
-	if (lowesta < lowestb)
-		return (lowesta);
-	return (-2147483649);
-}
-
-long int	highest_all(t_list **head_a, t_list **head_b)
-{
-	int	highesta;
-	int	highestb;
-
-	highesta = find_highest(head_a);
-	highestb = find_highest(head_b);
-	if (highesta < highestb)
-		return (highestb);
-	return (-2147483649);
-}*/
 
 t_list	*check_highest_lowest(t_list **search_a, t_list **head_b)
 {

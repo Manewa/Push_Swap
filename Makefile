@@ -5,55 +5,89 @@
 #                                                     +:+ +:+         +:+      #
 #    By: namalier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/09 17:11:12 by namalier          #+#    #+#              #
-#    Updated: 2024/04/11 19:11:42 by namalier         ###   ########.fr        #
+#    Created: 2024/04/19 16:49:35 by namalier          #+#    #+#              #
+#    Updated: 2024/04/19 16:49:48 by namalier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= srcs/Mandatory/Moves/moves1.c Mandatory/lib/ft_lib.c \
-			Mandatory/lib/ft_lib_utils.c Mandatory/lib/ft_lst.c \
-			Mandatory/Moves/moves2.c Mandatory/Moves/moves3.c \
-			Mandatory/push_swap.c Mandatory/ft_error.c Algo/algo.c \
-			Mandatory/Algo/check_algo.c Mandatory/Algo/count.c \
-			Mandatory/Algo/moves_algo.c Mandatory/Algo/move_top_bot.c \
-			Mandatory/Algo/moves_algo2.c Mandatory/Algo/moves_algo3.c \
-			Mandatory/Algo/count2.c \
+ALGODIR			= srcs/Mandatory/Algo
+LIBDIR 			= srcs/Mandatory/lib
+MOVESDIR 		= srcs/Mandatory/Moves
+BONUSDIR		= srcs/Bonus
+GNLDIR			= srcs/Bonus/GNL
+OBJDIR 			= obj
+OBJDIRBNS		= obj_bonus
 
-SRCS_BONUS	= Mandatory/Moves/moves1.c Mandatory/Moves/moves2.c \
-			  Mandatory/Moves/moves3.c Mandatory/lib/ft_lib.c \
-			  Mandatory/lib/ft_lib_utils.c Mandatory/lib/ft_lst.c \
-			  Mandatory/ft_error.c Bonus/checker.c Bonus/parsing_bonus.c \
-			  Bonus/GNL/get_next_line.c Bonus/GNL/get_next_line_utils.c \
+SRCS 			= $(ALGODIR)/algo.c $(ALGODIR)/check_algo.c $(ALGODIR)/count.c \
+       srcs/Mandatory/push_swap.c $(ALGODIR)/count_order.c \
+       $(ALGODIR)/find_extrems.c $(ALGODIR)/move_top_bot.c \
+       $(ALGODIR)/moves_a.c $(ALGODIR)/moves_b.c $(ALGODIR)/moves_r.c \
+       $(LIBDIR)/ft_lib_utils.c $(LIBDIR)/ft_error.c $(LIBDIR)/ft_lib.c \
+       $(LIBDIR)/ft_lst.c $(MOVESDIR)/moves1.c $(MOVESDIR)/moves2.c \
+       $(MOVESDIR)/moves3.c \
 
-HEADER		= push_swap.h
+SRCS_BONUS		= $(MOVESDIR)/moves1.c $(MOVESDIR)/moves2.c \
+				$(MOVESDIR)/moves3.c $(LIBDIR)/ft_lib_utils.c \
+				$(LIBDIR)/ft_error.c $(LIBDIR)/ft_lib.c $(LIBDIR)/ft_lst.c \
+				$(GNLDIR)/get_next_line.c $(GNLDIR)/get_next_line_utils.c \
+				$(BONUSDIR)/checker.c $(BONUSDIR)/parsing_bonus.c \
 
-OBJS		= ${SRCS:.c=.o}
+OBJS 			=	$(patsubst %.c,$(OBJDIR)/%.o,$(notdir $(SRCS)))
 
-OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
+OBJS_BONUS		=	$(patsubst %.c,$(OBJDIRBNS)/%.o,$(notdir $(SRCS_BONUS)))
 
-NAME		= push_swap
+NAME			=	push_swap
 
-NAME_BONUS	= checker
+NAME_BONUS		=	checker
 
-CFLAGS		= -Wall -Werror -Wextra -I include
+CFLAGS			=	-Wall -Werror -Wextra -I include
 
-.c.o		:
-			cc ${CFLAGS} -c $< -o ${<:.c=.o} -g
+$(NAME)			:	$(OBJDIR) $(OBJS)
+				cc $(OBJS) $(CFLAGS) -o $(NAME) -g
 
-${NAME}		:    ${OBJS}
-			cc ${OBJS} -o ${NAME} -g
+$(BONUS)			: 	$(OBJDIRBNS) $(OBJS_BONUS)
+				cc $(OBJS_BONUS) $(CFLAGS) -o $(NAME_BONUS) -g
 
-all			:		${NAME}
+$(OBJDIR)		:
+	 			@mkdir -p $@
 
-clean		:
-			rm -f ${OBJS} ${OBJS_BONUS}
+$(OBJDIRBNS)	:
+				@mkdir -p $@
 
-fclean		:		clean
-			rm -f ${NAME} ${NAME_BONUS}
+$(OBJDIR)/%.o	:	$(ALGODIR)/%.c
+				cc $(CFLAGS) -c $< -o $@
 
-re			: fclean all
+$(OBJDIR)/%.o	:	$(LIBDIR)/%.c
+				cc $(CFLAGS) -c $< -o $@
 
-checker		:	${OBJS_BONUS}
-			cc ${OBJS_BONUS} -o ${NAME_BONUS} -g
+$(OBJDIR)/%.o	:	$(MOVESDIR)/%.c
+				cc $(CFLAGS) -c $< -o $@
 
-.PHONY		: all clean fclean re checker
+$(OBJDIR)/push_swap.o	: srcs/Mandatory/push_swap.c
+				cc $(CFLAGS) -c $< -o $@
+
+$(OBJDIRBNS)/%.o: $(MOVESDIR)/%.c
+				cc $(CFLAGS) -c $< -o $@
+
+$(OBJDIRBNS)/%.o: $(LIBDIR)/%.c
+				cc $(CFLAGS) -c $< -o $@
+
+$(OBJDIRBNS)/%.o: $(GNLDIR)/%.c
+				cc $(CFLAGS) -c $< -o $@
+
+$(OBJDIRBNS)/%.o: $(BONUSDIR)/%.c
+				cc $(CFLAGS) -c $< -o $@
+
+bonus			: $(BONUS)
+
+clean			:
+				rm -rf $(OBJDIR) $(OBJDIRBNS)
+
+fclean			:	clean
+				rm -f $(NAME) $(NAME_BONUS)
+
+re				: fclean all
+
+all				: $(NAME)
+
+.PHONY			: all clean fclean re bonus

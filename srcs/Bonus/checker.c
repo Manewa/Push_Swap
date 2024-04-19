@@ -6,13 +6,11 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 19:41:17 by namalier          #+#    #+#             */
-/*   Updated: 2024/04/11 19:46:05 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:55:30 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-
-
+#include "push_swap.h"
 
 int	moves_algo(t_list **head_a, t_list **head_b, char *m)
 {

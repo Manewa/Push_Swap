@@ -6,7 +6,7 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:54:44 by namalier          #+#    #+#             */
-/*   Updated: 2024/03/25 12:54:45 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:52:21 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	prepare_for_algo(t_list **a, t_list **b)
 		pb(b, a, 1);
 		pb(b, a, 1);
 		pb(b, a, 1);
-		sort_b_at_three(b); //sort-three
+		sort_b_at_three(b);
 	}
 	else if ((*a)->next && (*a)->next->next && (*a)->next->next->next)
 	{

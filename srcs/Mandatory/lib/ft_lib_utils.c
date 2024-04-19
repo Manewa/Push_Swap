@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-#include "../push_swap.h"
-#include <stdio.h>
+#include "push_swap.h"
 
 size_t	ft_strlen(const char *c)
 {

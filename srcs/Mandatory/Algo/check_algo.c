@@ -6,7 +6,7 @@
 /*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:54:36 by namalier          #+#    #+#             */
-/*   Updated: 2024/03/25 12:54:37 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:52:57 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	sorted(t_list **a)
 	}
 	return (1);
 }
-
 
 t_list	*check_pos_a(t_list **search_a, t_list **head_b)
 {

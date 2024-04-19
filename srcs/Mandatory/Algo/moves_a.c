@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	move_to_a(t_list **head_a, t_list **head_b, t_list *tail)
 {
