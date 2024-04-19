@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: namalier <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: namalier <namalier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/19 16:49:35 by namalier          #+#    #+#              #
-#    Updated: 2024/04/19 16:49:48 by namalier         ###   ########.fr        #
+#    Updated: 2024/04/19 19:01:54 by namalier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ CFLAGS			=	-Wall -Werror -Wextra -I include
 $(NAME)			:	$(OBJDIR) $(OBJS)
 				cc $(OBJS) $(CFLAGS) -o $(NAME) -g
 
-$(BONUS)			: 	$(OBJDIRBNS) $(OBJS_BONUS)
+$(NAME_BONUS)		: 	$(OBJDIRBNS) $(OBJS_BONUS)
 				cc $(OBJS_BONUS) $(CFLAGS) -o $(NAME_BONUS) -g
 
 $(OBJDIR)		:
@@ -78,7 +78,7 @@ $(OBJDIRBNS)/%.o: $(GNLDIR)/%.c
 $(OBJDIRBNS)/%.o: $(BONUSDIR)/%.c
 				cc $(CFLAGS) -c $< -o $@
 
-bonus			: $(BONUS)
+bonus			: $(NAME_BONUS)
 
 clean			:
 				rm -rf $(OBJDIR) $(OBJDIRBNS)
