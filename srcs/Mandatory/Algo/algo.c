@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: namalier <namalier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:54:44 by namalier          #+#    #+#             */
-/*   Updated: 2024/04/19 16:52:21 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:02:58 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	prepare_for_algo(t_list **a, t_list **b)
 	return (0);
 }
 
-void	fill_b(t_list **a, t_list **b)
+void	algo_fill_b(t_list **a, t_list **b)
 {
 	t_list	*pass;
 	int		highest;
@@ -71,7 +71,7 @@ void	main_algo(t_list **a)
 	else
 	{
 		tmp = *a;
-		fill_b(a, &b);
+		algo_fill_b(a, &b);
 		if (b && b->next && b->next->next)
 			count_order(&b);
 		else

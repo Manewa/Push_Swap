@@ -6,7 +6,7 @@
 #    By: namalier <namalier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/19 16:49:35 by namalier          #+#    #+#              #
-#    Updated: 2024/04/19 19:01:54 by namalier         ###   ########.fr        #
+#    Updated: 2024/04/25 17:03:38 by namalier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,12 @@ OBJDIR 			= obj
 OBJDIRBNS		= obj_bonus
 
 SRCS 			= $(ALGODIR)/algo.c $(ALGODIR)/check_algo.c $(ALGODIR)/count.c \
-       srcs/Mandatory/push_swap.c $(ALGODIR)/count_order.c \
-       $(ALGODIR)/find_extrems.c $(ALGODIR)/move_top_bot.c \
-       $(ALGODIR)/moves_a.c $(ALGODIR)/moves_b.c $(ALGODIR)/moves_r.c \
-       $(LIBDIR)/ft_lib_utils.c $(LIBDIR)/ft_error.c $(LIBDIR)/ft_lib.c \
-       $(LIBDIR)/ft_lst.c $(MOVESDIR)/moves1.c $(MOVESDIR)/moves2.c \
-       $(MOVESDIR)/moves3.c \
+				srcs/Mandatory/push_swap.c $(ALGODIR)/count_order.c \
+				$(ALGODIR)/find_extrems.c $(ALGODIR)/move_top_bot.c \
+				$(ALGODIR)/moves_a.c $(ALGODIR)/moves_b.c $(ALGODIR)/moves_r.c \
+				$(LIBDIR)/ft_lib_utils.c $(LIBDIR)/ft_error.c $(LIBDIR)/ft_lib.c \
+				$(LIBDIR)/ft_lst.c $(MOVESDIR)/moves1.c $(MOVESDIR)/moves2.c \
+				$(MOVESDIR)/moves3.c \
 
 SRCS_BONUS		= $(MOVESDIR)/moves1.c $(MOVESDIR)/moves2.c \
 				$(MOVESDIR)/moves3.c $(LIBDIR)/ft_lib_utils.c \
@@ -84,7 +84,7 @@ clean			:
 				rm -rf $(OBJDIR) $(OBJDIRBNS)
 
 fclean			:	clean
-				rm -f $(NAME) $(NAME_BONUS)
+				rm -rf $(NAME) $(NAME_BONUS)
 
 re				: fclean all
 

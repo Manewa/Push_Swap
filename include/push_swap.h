@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: namalier <namalier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:14:23 by namalier          #+#    #+#             */
-/*   Updated: 2024/04/11 19:39:33 by namalier         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:03:20 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			main(int argc, char **argv);
 /********			algo				******/
 
 int			prepare_for_algo(t_list **a, t_list **b);
-void		fill_b(t_list **a, t_list **b);
+void		algo_fill_b(t_list **a, t_list **b);
 void		main_algo(t_list **a);
 
 /********			check_algo			******/
